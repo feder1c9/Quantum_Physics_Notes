@@ -1,0 +1,387 @@
+\chapter{Lezione 1 - 02/10/2026}
+
+\section{Introduzione ai Metodi di Approssimazione}
+
+Chiusa la parentesi riguardante la disuguaglianza di Bell e l'argomento delle variabili nascoste, introduciamo adesso il concetto di base delle soluzioni approssimate.
+
+Fino a questo momento, abbiamo studiato sistemi per i quali è possibile ottenere una soluzione analitica esatta, come:
+\begin{itemize}
+\item La \textbf{buca quadrata} di potenziale;
+\item L'\textbf{oscillatore armonico};
+\item L'\textbf{atomo di idrogeno}.
+\end{itemize}
+
+Nella realtà, tuttavia, la stragrande maggioranza dei sistemi fisici non appartiene a questa categoria e non ammette soluzioni esatte. Diventa quindi fondamentale sviluppare e padroneggiare dei \textbf{metodi di approssimazione} efficaci per ricavare le soluzioni del sistema.
+
+\section{Approssimazioni Analitiche vs. Risoluzione Numerica}
+
+Potrebbe sorgere una naturale obiezione metodologica: dal momento che le approssimazioni si basano spesso su lunghi sviluppi di formule, perché non affidarsi direttamente alla potenza di calcolo dei moderni computer, delegando la risoluzione a un algoritmo numerico per ottenere la soluzione desiderata in modo puntuale?
+
+Questa impostazione è intrinsecamente limitante per almeno tre motivi fondamentali:
+
+\subsection{1. Perdita della Comprensione Fisica}
+Quando si esegue una risoluzione numerica (inserendo nel calcolatore le equazioni del sistema), si ottiene indubbiamente una soluzione finale, ma non si apprende nulla sulle intime dinamiche del sistema. Si perde cioè la comprensione di come le caratteristiche specifiche (ad esempio, la forma del potenziale) determinino la particolare soluzione o funzione d'onda trovata.
+\begin{itemize}
+\item \textbf{Esempio pratico (QCD su reticolo):} Nello studio della teoria delle interazioni forti (Cromodinamica Quantistica), operiamo in un regime altamente non perturbativo. Per calcolare specifiche grandezze sono stati necessari decenni di sforzi computazionali enormi per risolvere la QCD su reticolo. Questo approccio comporta la risoluzione di integrali con miliardi di gradi di libertà. Se ci affidiamo unicamente a questo risultato numerico finale, ci precludiamo la comprensione della fisica sottostante, perché ignoriamo il ruolo funzionale delle varie componenti fisiche del sistema. Le approssimazioni analitiche, al contrario, evidenziano in modo esplicito in che modo le grandezze fisiche e i potenziali plasmano la funzione d'onda finale.
+\end{itemize}
+
+\subsection{2. Guida alla Scoperta di Nuovi Fenomeni}
+I metodi di approssimazione sono una guida imprescindibile per affrontare e scoprire regimi fisici inesplorati, rivelandosi spesso lo strumento fondamentale per la scoperta.
+\begin{itemize}
+\item \textbf{Esempio pratico (Effetto Tunnel):} Nella fisica classica, in presenza di una barriera di potenziale, una particella con energia inferiore all'altezza della barriera non può attraversarla. Se ci si affidasse unicamente alla simulazione numerica senza conoscere i metodi di approssimazione, ci si potrebbe imbattere in probabilità di attraversamento minime (dell'ordine di $10^{-\text{qualcosa}}$) che verrebbero facilmente scambiate per semplice \textbf{rumore numerico} o errore di macchina del calcolatore. Avendo studiato le approssimazioni analitiche, invece, si comprende che quel piccolo valore non è un errore, ma l'impronta fisica di un fenomeno quantistico reale (l'Effetto Tunnel). Senza un modello teorico e approssimato di riferimento, il calcolatore da solo non suggerirà mai l'esistenza di un nuovo fenomeno.
+\end{itemize}
+
+\subsection{3. Prevenzione di Errori Sistematici e Grossolani}
+I metodi di approssimazione aiutano il fisico a interpretare i dati del calcolatore e ad evitare errori marchiani.
+\begin{itemize}
+\item \textbf{Esempio pratico (Regole di selezione e Parità):} Consideriamo il calcolo di un'ampiezza di transizione (o la variazione di un livello energetico al primo ordine) tra due stati imperturbati, per esempio un livello $n$ e un livello $m$. Se applichiamo la teoria delle perturbazioni, sappiamo che vigono rigorose \textbf{regole di selezione}. Se lo stato iniziale e quello finale possiedono la stessa \textbf{parità} e l'operatore che induce la transizione ha una parità definita (tale per cui l'integrale risulta dispari), l'ampiezza di transizione deve essere esattamente uguale a \textbf{zero} per motivi di pura simmetria. Chi esegue il calcolo puramente in via numerica potrebbe ottenere un valore piccolissimo ma non nullo, ed essere fuorviato. La teoria analitica ci garantisce invece a priori che la transizione è fisicamente proibita.
+\end{itemize}
+In sintesi, i metodi di approssimazione mantengono oggi un'importanza vitale, non solo per la loro valenza storica, ma perché costituiscono la vera e propria \textit{guida} all'interpretazione fisica: senza di essi rischiamo di non accorgerci dell'esistenza di fenomeni reali o, viceversa, di interpretare come reali dei banali errori numerici.
+
+\section{Fondamenti della Teoria delle Perturbazioni}
+
+L'approccio perturbativo si basa su un'idea fondamentale. Il punto di partenza è un sistema descritto da un hamiltoniano imperturbato, che indichiamo con $H_0$. Tale sistema è per definizione risolvibile in modo esatto; ciò significa che conosciamo perfettamente il problema agli autovalori associato:
+\begin{equation}
+H_0 |n^{(0)}\rangle = E_n^{(0)} |n^{(0)}\rangle
+\end{equation}
+dove $E_n^{(0)}$ sono gli autovalori (le energie a ordine zero) e $\vert{}n^{(0)}\rangle$ gli autostati esatti del sistema libero (o imperturbato).
+
+Il problema sorge quando dobbiamo analizzare un sistema descritto da un hamiltoniano più generale e complesso $H$, che si può scrivere come la somma della parte libera e di un termine aggiuntivo:
+\begin{equation}
+H = H_0 + \lambda H_1
+\end{equation}
+Il termine $\lambda H_1$ rappresenta la nostra \textbf{perturbazione}, un contributo che non sappiamo risolvere in maniera esatta. L'idea chiave è ipotizzare che il parametro $\lambda$ sia un numero \textbf{piccolo}, tale da permetterci di trovare una soluzione approssimata partendo dal sistema noto.
+
+Cerchiamo quindi l'autovalore esatto $E_n$ e l'autostato esatto $\vert{}n\rangle$ associati al nuovo hamiltoniano $H$:
+\begin{equation}
+H |n\rangle = E_n |n\rangle
+\end{equation}
+Sostituendo l'espressione di $H$, l'equazione di Schrödinger diventa:
+\begin{equation}
+(H_0 + \lambda H_1) |n\rangle = E_n |n\rangle \quad \implies \quad (H_0 + \lambda H_1 - E_n) |n\rangle = 0
+\end{equation}
+
+\subsection{Il Concetto di "Perturbazione Piccola"}
+Quando affermiamo che la perturbazione deve essere proporzionale a un "$\lambda$ piccolo" (parametricamente intendiamo $\lambda \ll 1$), intendiamo dal punto di vista prettamente fisico che \textbf{l'effetto globale della perturbazione deve essere trascurabile rispetto all'effetto del termine $H\_0$}. In termini matematici più rigorosi, gli elementi di matrice del termine perturbativo (che calcoleremo nel corso della teoria) devono essere in valore assoluto molto più piccoli rispetto alla spaziatura dei livelli energetici imperturbati forniti da $H_0$.
+
+Affinché l'approccio perturbativo abbia senso, ci aspettiamo dunque che l'autovalore finale $E_n$ e l'autostato $\vert{}n\rangle$ siano esprimibili come una certa funzione espandibile del parametro $\lambda$.
+
+\section{Completezza della Base e Limiti di Validità}
+
+Alla base della risoluzione perturbativa c'è un'importante assunzione di partenza: lo spazio di Hilbert del sistema perturbato coincide con quello del sistema imperturbato. Siccome gli autostati di partenza $\{\vert{}n^{(0)}\rangle\}$ formano una \textbf{base completa} per il sistema $H_0$, continuiamo ad assumere che essi costituiscano una base completa valida anche per il problema con la perturbazione $\lambda H_1$.
+
+Di conseguenza, ci aspettiamo che il nuovo autostato $\vert{}n\rangle$ possa essere descritto come una \textbf{combinazione lineare} della base di partenza. Nello specifico, sarà composto dallo stato di partenza $\vert{}n^{(0)}\rangle$ sommato a una combinazione lineare di tutti gli altri stati $k \neq n$ perturbati dall'interazione.
+
+\subsection{Quando la Teoria Fallisce: Interazioni Forti}
+È fondamentale specificare che questa assunzione (base invariata tra sistema libero e perturbato) \textbf{non è valida in generale}.
+
+Consideriamo il seguente esempio: abbiamo un atomo di idrogeno e lo perturbiamo debolmente con un'onda elettromagnetica. In questo regime (transizioni atomiche classiche), i nuovi stati sono ancora ottime combinazioni lineari degli stati legati dell'atomo di idrogeno.
+Ma cosa succede se il sistema viene colpito da un'onda ad altissima energia, tale da spaccare l'atomo di idrogeno e strappare via gli elettroni dal nucleo?
+\begin{itemize}
+\item Gli elettroni diventano particelle libere.
+\item Il loro stato finale non sarà più descrivibile in modo sensato usando le autofunzioni (stati legati) dell'atomo di idrogeno.
+\item Dal punto di vista matematico, ci stiamo spostando in uno spazio di Hilbert completamente diverso (dallo spettro discreto passiamo allo spettro continuo).
+\end{itemize}
+In questo specifico caso, l'energia in gioco rompe la gerarchia del sistema: il termine $\lambda H_1$ \textbf{non} è più piccolo, la perturbazione distrugge l'assetto iniziale e, conseguentemente, l'approccio perturbativo basato sulla completezza dei vecchi stati imperturbati smette totalmente di funzionare.
+
+\section{Il Metodo di Rayleigh-Schrödinger}
+
+\subsection{Espansione degli Autostati}
+In presenza di una perturbazione, ci si aspetta che il nuovo autostato perturbato si venga a formare a partire dallo stato imperturbato iniziale a cui si aggiunge una combinazione lineare (pesata tramite opportuni coefficienti $c_k$) costruita sulla base degli autostati di partenza.
+
+L'idea cardine della teoria perturbativa risiede proprio in questo: poter esprimere e "districare" la natura dello stato perturbato finale partendo sempre dagli stati imperturbati. Come abbiamo discusso in precedenza (nell'esempio dell'onda ad altissima energia incidente su un atomo), sappiamo che vi sono eccezioni in cui la perturbazione è tale da cambiare lo spazio di Hilbert e invalidare questa assunzione; escludendo però questi casi limite, consideriamo valida l'espressione in termini della base originaria.
+
+Il formalismo rigoroso che concretizza questa idea e ci permette di impostare la teoria prende il nome di \textbf{metodo di Rayleigh-Schrödinger}.
+
+\subsection{Assunzione di Analiticità e Sviluppi in Serie}
+Basandoci su tale principio, l'autovalore esatto del sistema perturbato (l'energia $E_n$) diventa una funzione dipendente dal parametro di accoppiamento della perturbazione, $\lambda$. Il nuovo valore dell'energia sarà pari al valore di partenza imperturbato al quale si sommano gli effetti indotti dalla perturbazione.
+
+L'assunzione fondamentale del metodo — che risulta valida nella stragrande maggioranza dei casi fisici trattati — è che la dipendenza della grandezza dal parametro $\lambda$ sia di natura \textbf{analitica}. L'analiticità implica che la funzione possa essere interamente espressa tramite uno sviluppo in serie di Taylor (o Maclaurin) in potenze del parametro $\lambda$.
+
+Possiamo pertanto scrivere l'energia perturbata come:
+\begin{equation}
+E_n = E_n^{(0)} + \lambda E_n^{(1)} + \lambda^2 E_n^{(2)} + \dots
+\end{equation}
+dove:
+\begin{itemize}
+\item $E_n^{(0)}$ è l'energia del sistema imperturbato (ordine zero);
+\item $E_n^{(1)}$ rappresenta la correzione al \textbf{primo ordine};
+\item $E_n^{(2)}$ rappresenta la correzione al \textbf{secondo ordine}, e così via.
+\end{itemize}
+
+Esattamente alla stessa maniera, possiamo sviluppare l'autostato esatto perturbato $\vert{}n\rangle$. Anch'esso presenterà un termine imperturbato di ordine zero a cui andranno a sommarsi progressivamente le correzioni ai vari ordini in potenze di $\lambda$:
+\begin{equation}
+|n\rangle = |n^{(0)}\rangle + \lambda |n^{(1)}\rangle + \lambda^2 |n^{(2)}\rangle + \dots
+\end{equation}
+
+\subsection{Impostazione del Problema Ordine per Ordine}
+
+\textit{(Nota: A quanti hanno già affrontato lo studio della teoria delle perturbazioni in corsi precedenti, l'esposizione di questi passaggi potrà risultare una ripetizione in parte noiosa. Tuttavia, è indispensabile ripassare formalmente questa base teorica poiché costituirà il punto di partenza da cui ci sposteremo per affrontare scenari ben più complessi.)}
+
+Il primo passaggio operativo della teoria di Rayleigh-Schrödinger consiste nel riprendere l'equazione agli autovalori completa per il sistema perturbato:
+\begin{equation}
+(H_0 + \lambda H_1) |n\rangle = E_n |n\rangle
+\end{equation}
+Avendo postulato la validità degli sviluppi in serie sia per le energie che per gli autostati, il metodo prevede di \textbf{sostituire} l'espressione di $E_n$ e di $\vert{}n\rangle$ direttamente all'interno dell'equazione di Schrödinger appena citata.
+
+Procedendo in questo modo potremo ricavare le incognite uguagliando i termini dell'equazione che possiedono lo stesso grado (la stessa potenza del parametro $\lambda$), risolvendo così il problema in maniera ricorsiva e iterativa ordine per ordine.
+
+\section{Correzione degli Autostati al Primo Ordine}
+
+\subsection{Determinazione dei coefficienti}
+Partiamo dall'espressione in cui compare la somma sui coefficienti (rappresentata in genere tramite una sommatoria su $k$). Per estrarre un coefficiente specifico $c_m^{(1)}$, dobbiamo proiettare l'equazione sullo stato imperturbato associato. Quando effettuiamo questa operazione, grazie all'ortonormalità degli stati, di tutta la sommatoria sopravvivrà esclusivamente il termine per cui l'indice $k$ è uguale a $m$.
+
+Esplicitando l'equazione della teoria perturbativa al primo ordine e proiettando, otteniamo:
+\begin{equation}
+c_m^{(1)} (E_n^{(0)} - E_m^{(0)}) = \langle m^{(0)} | H_1 | n^{(0)} \rangle
+\end{equation}
+Isolando il coefficiente $c_m^{(1)}$, troviamo:
+\begin{equation}
+c_m^{(1)} = \frac{\langle m^{(0)} | H_1 | n^{(0)} \rangle}{E_n^{(0)} - E_m^{(0)}}
+\end{equation}
+
+Conoscendo tutti questi coefficienti per ogni $k \neq n$, conosciamo l'intera combinazione lineare che definisce lo stato.
+In altri termini, abbiamo trovato che lo stato $\vert{}n\rangle$ dopo la perturbazione (al primo ordine) è uguale allo stato imperturbato $\vert{}n^{(0)}\rangle$ più la correzione. Considerando la perturbazione formale $\lambda$, lo stato si scrive:
+\begin{equation}
+|n\rangle = |n^{(0)}\rangle + \lambda \sum_{k \neq n} c_k^{(1)} |k^{(0)}\rangle
+\end{equation}
+Sostituendo l'espressione appena trovata per i coefficienti $c_k^{(1)}$ (e inglobando $\lambda H_1$ in $H_1$, oppure mantenendo $\lambda$ in evidenza, a seconda della convenzione) otteniamo la formula finale per lo stato al primo ordine:
+\begin{equation}
+|n^{(1)}\rangle = \sum_{k \neq n} \frac{\langle k^{(0)} | H_1 | n^{(0)} \rangle}{E_n^{(0)} - E_k^{(0)}} |k^{(0)}\rangle
+\end{equation}
+
+Così si ottiene la correzione di base. Osserviamo subito una cosa fondamentale: se l'elemento di matrice $\langle k^{(0)} \vert{} H_1 \vert{} n^{(0)} \rangle$ fosse nullo, il termine non contribuirebbe alla sommatoria. Se tutti questi elementi fossero nulli, non ci sarebbe alcuna correzione.
+
+\subsection{Interpretazione Fisica: La Deformazione dello Stato}
+Che cosa sta succedendo fisicamente?
+In assenza di perturbazione, lo stato di partenza $\vert{}n^{(0)}\rangle$ e lo stato generico $\vert{}k^{(0)}\rangle$ sono ortogonali tra loro. Quando agisce la perturbazione (l'operatore $H_1$), essa deforma lo stato originario iniziando a creare una "sovrapposizione" (un *overlap*) con gli altri stati del sistema imperturbato.
+
+Vediamo un \textbf{esempio pratico} con l'oscillatore armonico unidimensionale.
+Supponiamo di avere un potenziale, come un campo elettrico uniforme, che introduce una perturbazione proporzionale a $x$ (quindi $H_1 \propto x$).
+Prendiamo come stato iniziale lo stato fondamentale, che indicheremo con $\vert{}0^{(0)}\rangle$. Vogliamo calcolare il coefficiente di sovrapposizione con lo stato eccitato $\vert{}1^{(0)}\rangle$.
+
+L'elemento di matrice da valutare è:
+\begin{equation}
+\langle 1^{(0)} | x | 0^{(0)} \rangle
+\end{equation}
+Ricordando che l'operatore posizione $x$ può essere espresso in termini degli operatori di creazione ($a^\dagger$) e distruzione ($a$), sappiamo che $x \propto (a + a^\dagger)$. Quando applichiamo $a^\dagger$ allo stato $\vert{}0^{(0)}\rangle$, otteniamo uno stato proporzionale a $\vert{}1^{(0)}\rangle$. Poiché il prodotto scalare $\langle 1^{(0)} \vert{} 1^{(0)} \rangle = 1$, avremo una sovrapposizione non nulla. Pertanto, la perturbazione lineare deforma lo stato fondamentale "mescolandolo" esclusivamente con il primo livello eccitato.
+
+Se invece ci chiedessimo qual è il coefficiente di sovrapposizione con lo stato $\vert{}2^{(0)}\rangle$:
+\begin{equation}
+\langle 2^{(0)} | x | 0^{(0)} \rangle
+\end{equation}
+Questo elemento di matrice fa zero, poiché l'operatore lineare (potenza 1) può fare "saltare" solo di un livello (regola di selezione dell'oscillatore armonico $\Delta n = \pm 1$). La perturbazione $x$ è troppo "debole" per creare sovrapposizione con livelli più distanti.
+
+Cosa accadrebbe con una \textbf{interazione più forte}, ad esempio proporzionale a $x^2$?
+Se applico $x^2 \propto (a + a^\dagger)^2$ allo stato $\vert{}0^{(0)}\rangle$, all'interno del quadrato troverò un termine $(a^\dagger)^2$. Applicando due volte l'operatore di creazione partendo da $\vert{}0^{(0)}\rangle$, arrivo allo stato $\vert{}2^{(0)}\rangle$. Dunque, in questo caso:
+\begin{equation}
+\langle 2^{(0)} | x^2 | 0^{(0)} \rangle \neq 0
+\end{equation}
+Avrei quindi una sovrapposizione diretta con lo stato $\vert{}2^{(0)}\rangle$.
+
+Sebbene l'oscillatore armonico sia un caso speciale per via delle sue rigide regole di selezione, il concetto fisico generale rimane valido per qualsiasi sistema: \textbf{la perturbazione deforma lo stato, creando sovrapposizioni (mixing) con altri stati imperturbati}, a seconda della forma funzionale della perturbazione stessa. (Questi calcoli verranno ripresi durante le esercitazioni scritte, che solitamente risultano molto agevoli su questo argomento).
+
+\section{La Convenzione di Normalizzazione nella Teoria Perturbativa}
+
+Soffermiamoci ora su un dettaglio tecnico che riguarda la \textbf{normalizzazione} degli stati perturbati.
+Alcuni libri di testo fanno una scelta specifica riguardo ai termini della sommatoria. Noi abbiamo scritto che la correzione al primo ordine $\vert{}n^{(1)}\rangle$ è una somma sui vari $\vert{}k^{(0)}\rangle$ \textit{con $k \neq n$}. In altri termini, abbiamo escluso lo stato $n$ dalla sommatoria.
+
+In termini matematici, stiamo imponendo che l'espansione non contenga contributi proporzionali allo stato di partenza, il che equivale ad affermare che:
+\begin{equation}
+\langle n^{(0)} | n^{(1)} \rangle = 0
+\end{equation}
+
+Vediamo le implicazioni. Sviluppiamo il prodotto scalare tra lo stato imperturbato e lo stato totale perturbato:
+\begin{equation}
+\langle n^{(0)} | n \rangle = \langle n^{(0)} | \left( |n^{(0)}\rangle + \lambda |n^{(1)}\rangle + \lambda^2 |n^{(2)}\rangle + \dots \right)
+\end{equation}
+Imponendo che il risultato complessivo debba valere esattamente $1$, otteniamo:
+\begin{equation}
+1 = \langle n^{(0)} | n^{(0)} \rangle + \lambda \langle n^{(0)} | n^{(1)} \rangle + \lambda^2 \langle n^{(0)} | n^{(2)}\rangle + \dots
+\end{equation}
+Sappiamo già che $\langle n^{(0)} \vert{} n^{(0)} \rangle = 1$. L'equazione diventa quindi:
+\begin{equation}
+1 = 1 + \lambda \langle n^{(0)} | n^{(1)} \rangle + \lambda^2 \langle n^{(0)} | n^{(2)}\rangle + \dots
+\end{equation}
+Portando l'1 dall'altra parte dell'equazione:
+\begin{equation}
+0 = \lambda \langle n^{(0)} | n^{(1)} \rangle + \lambda^2 \langle n^{(0)} | n^{(2)}\rangle + \dots
+\end{equation}
+Siccome questo deve essere vero per un generico parametro $\lambda$ (dove $\lambda$ può variare tipicamente da $0$ a $1$), l'unica soluzione possibile per rendere l'equazione indipendente da $\lambda$ è che ogni singolo coefficiente della serie di potenze sia rigorosamente nullo:
+\begin{equation}
+\langle n^{(0)} | n^{(1)} \rangle = 0, \quad \langle n^{(0)} | n^{(2)} \rangle = 0, \quad \dots \quad \langle n^{(0)} | n^{(r)} \rangle = 0
+\end{equation}
+
+Questa è la condizione di normalizzazione intermedia: tutte le correzioni a tutti gli ordini devono essere sempre \textbf{ortogonali} allo stato imperturbato di partenza.
+
+Come abbiamo visto, imponendo che la sommatoria su $k$ nel calcolo di $\vert{}n^{(1)}\rangle$ escluda il termine $k=n$, noi abbiamo \textit{già} applicato esplicitamente questa scelta: tutte le correzioni vivono nello spazio vettoriale ortogonale rispetto allo stato $n$ di partenza.
+
+\subsection{Sviluppo della Norma a vari Ordini}
+Cosa succede quando andiamo a calcolare la norma esatta dello stato perturbato? Lo studente potrebbe chiedersi: "Il mio nuovo stato perturbato, fermo al primo ordine, è ancora normalizzato a uno?"
+
+Calcoliamo il prodotto scalare dello stato totale con se stesso (usando lo sviluppo fino al primo ordine di $\lambda$):
+\begin{equation}
+\langle n | n \rangle = \left( \langle n^{(0)}| + \lambda \langle n^{(1)}| \right) \left( |n^{(0)}\rangle + \lambda |n^{(1)}\rangle \right)
+\end{equation}
+Sviluppando il prodotto termine a termine, troviamo quattro contributi:
+\begin{equation}
+\langle n | n \rangle = \langle n^{(0)} | n^{(0)} \rangle + \lambda \langle n^{(1)} | n^{(0)} \rangle + \lambda \langle n^{(0)} | n^{(1)} \rangle + \lambda^2 \langle n^{(1)} | n^{(1)} \rangle
+\end{equation}
+
+Analizziamo i termini:
+\begin{enumerate}
+\item Il primo termine, $\langle n^{(0)} \vert{} n^{(0)} \rangle$, fa esattamente $1$.
+\item Il termine $\lambda \langle n^{(1)} \vert{} n^{(0)} \rangle$ fa zero, grazie alla condizione di ortogonalità stabilita in precedenza.
+\item Il termine $\lambda \langle n^{(0)} \vert{} n^{(1)} \rangle$ fa anch'esso zero.
+\item Il termine $\lambda^2 \langle n^{(1)} \vert{} n^{(1)} \rangle$ non è nullo, ma è un contributo del \textbf{secondo ordine} ($\lambda^2$). Se includessimo correzioni di ordine superiore ($r>1$), otterremmo altri termini di grado elevato.
+\end{enumerate}
+
+Siccome in questo momento noi stiamo svolgendo la teoria limitandoci esclusivamente \textbf{al primo ordine} nello sviluppo di Taylor, e poiché a questo grado di precisione il termine di ordine $\lambda^2$ va coerentemente trascurato, possiamo concludere che la norma dello stato, troncata al primo ordine in $\lambda$, è pari a $1 + 0 = 1$. Lo stato è quindi correttamente normalizzato, a patto di rispettare le condizioni di ortogonalità discusse.
+    
+
+\section{La Normalizzazione dello Stato a Ordini Superiori}
+
+Riprendendo il discorso sulla normalizzazione, abbiamo visto in precedenza che, valutando la norma dello stato perturbato $\langle n \vert{} n \rangle$, otteniamo un'espressione del tipo $1 + 0 + \mathcal{O}(\lambda^2)$.
+I termini aggiuntivi che compaiono, grazie alla scelta di ortogonalità che abbiamo imposto ($\langle n^{(0)} \vert{} n^{(1)} \rangle = 0$), sono tutti proporzionali a ordini superiori del parametro perturbativo $\lambda$.
+
+Di conseguenza, se tronchiamo lo sviluppo al \textbf{primo ordine}, lo stato perturbato risulta già correttamente normalizzato a $1$. Non vi è la necessità di introdurre ulteriori costanti di normalizzazione.
+Se non avessimo imposto fin dall'inizio l'ortogonalità tra lo stato imperturbato e le sue correzioni, saremmo stati costretti a inserire complessi fattori di normalizzazione già al primo ordine. Con la nostra convenzione, invece, lo stato si mantiene normalizzato all'ordine che stiamo considerando.
+
+\subsection{Complicazioni agli ordini successivi}
+Tuttavia, se decidessimo di spingerci al \textbf{secondo ordine}, emergerebbe il termine proporzionale a $\langle n^{(1)} \vert{} n^{(1)} \rangle$, il quale renderebbe la norma diversa da $1$. Per ripristinare la normalizzazione esatta, dovremmo aggiungere ulteriori costanti.
+
+Questo è un problema tecnico noto, trattato nei testi più specializzati di meccanica quantistica. Lavorando a ordini perturbativi sempre più alti, si presentano delle complicazioni matematiche: in generale, diventa persino difficile (se non impossibile) confinare rigorosamente tutte le correzioni dello stato in un sottospazio sempre ortogonale allo stato di partenza. Si tratta di sottigliezze formali della struttura matematica della teoria, che menzioniamo per completezza nel quadro della fisica teorica, ma che non ci impediranno di ricavare i risultati fisici principali.
+
+\section{Calcolo dell'Energia all'Ordine Generico $r$}
+
+Sfruttando la proprietà di ortogonalità appena discussa, andiamo ora a ricavare una formula generale per la correzione dell'energia a un ordine arbitrario $r$.
+Partiamo dall'equazione di Schrödinger perturbativa sviluppata e isoliamo i termini di ordine $r$. Proiettiamo l'intera equazione moltiplicando a sinistra per il bra dello stato imperturbato, $\langle n^{(0)} \vert{}$.
+
+L'equazione, strutturata raccogliendo i termini, si presenta nella forma:
+\begin{equation}
+\langle n^{(0)} | \left( H_0 - E_n^{(0)} \right) | n^{(r)} \rangle = \dots
+\end{equation}
+Il membro di sinistra si annulla identicamente. Infatti, facendo agire $H_0$ a sinistra sul bra $\langle n^{(0)} \vert{}$, esso restituisce il proprio autovalore $E_n^{(0)}$, per cui la parentesi diventa $(E_n^{(0)} - E_n^{(0)}) = 0$. Di conseguenza, tutto il membro di sinistra va a zero.
+
+Valutiamo ora il membro di destra. Esso contiene sia i termini derivanti dallo sviluppo dell'energia, sia il termine derivante dall'azione del potenziale perturbativo $H_1$.
+Nello specifico, troveremo una somma di termini in cui compaiono le energie ai vari ordini $k$ moltiplicate per le proiezioni degli stati:
+\begin{equation}
+\sum_{k} E_n^{(k)} \langle n^{(0)} | n^{(r-k)} \rangle
+\end{equation}
+Ricordando la nostra convenzione di normalizzazione, sappiamo che $\langle n^{(0)} \vert{} n^{(m)} \rangle = 0$ per qualsiasi ordine $m > 0$. Pertanto, \textbf{tutti i termini di questa sommatoria si annullano}, ad eccezione di un unico termine: quello per cui lo stato nel ket è di ordine zero ($r-k = 0 \implies k=r$).
+Questo unico termine superstite è proporzionale a $\langle n^{(0)} \vert{} n^{(0)} \rangle = 1$, e restituisce esattamente la correzione all'energia cercata: $E_n^{(r)}$.
+
+In aggiunta ai termini dell'energia, a destra compare il contributo del potenziale perturbativo $H_1$ agente sullo stato all'ordine precedente:
+\begin{equation}
+- \langle n^{(0)} | H_1 | n^{(r-1)} \rangle
+\end{equation}
+
+Uguagliando a zero la somma dei termini superstiti a destra, otteniamo l'equazione finale:
+\begin{equation}
+E_n^{(r)} - \langle n^{(0)} | H_1 | n^{(r-1)} \rangle = 0
+\end{equation}
+Portando il termine di matrice dall'altra parte dell'uguale (cambiando segno da meno a più), arriviamo a una \textbf{proprietà generale fondamentale} della teoria delle perturbazioni:
+\begin{equation}
+E_n^{(r)} = \langle n^{(0)} | H_1 | n^{(r-1)} \rangle
+\end{equation}
+Questa relazione ci dice che, per calcolare la correzione dell'energia all'ordine $r$, è sufficiente conoscere la correzione dello stato fermandosi all'ordine precedente, $r-1$.
+
+\section{Correzione dell'Energia al Secondo Ordine}
+
+Applichiamo subito il principio generale appena dimostrato per compiere l'ultimo passo: il calcolo della \textbf{correzione dell'energia al secondo ordine} ($E_n^{(2)}$).
+
+Sostituendo $r=2$ nella formula generale, otteniamo:
+\begin{equation}
+E_n^{(2)} = \langle n^{(0)} | H_1 | n^{(1)} \rangle
+\end{equation}
+Noi conosciamo già l'espressione analitica dello stato corretto al primo ordine $\vert{}n^{(1)}\rangle$, avendola ricavata precedentemente. Essa è data dalla sommatoria sui coefficienti $c_k^{(1)}$:
+\begin{equation}
+|n^{(1)}\rangle = \sum_{k \neq n} c_k^{(1)} |k^{(0)}\rangle = \sum_{k \neq n} \frac{\langle k^{(0)} | H_1 | n^{(0)} \rangle}{E_n^{(0)} - E_k^{(0)}} |k^{(0)}\rangle
+\end{equation}
+
+Sostituiamo questa espressione all'interno dell'elemento di matrice per l'energia al secondo ordine:
+\begin{equation}
+E_n^{(2)} = \langle n^{(0)} | H_1 \left( \sum_{k \neq n} \frac{\langle k^{(0)} | H_1 | n^{(0)} \rangle}{E_n^{(0)} - E_k^{(0)}} |k^{(0)}\rangle \right)
+\end{equation}
+
+Essendo l'operatore $H_1$ lineare, possiamo estrarre la sommatoria e i termini numerici scalari fuori dal prodotto interno. L'operatore $H_1$ andrà quindi ad agire tra il bra $\langle n^{(0)} \vert{}$ e il ket $\vert{}k^{(0)}\rangle$:
+\begin{equation}
+E_n^{(2)} = \sum_{k \neq n} \langle n^{(0)} | H_1 | k^{(0)} \rangle \frac{\langle k^{(0)} | H_1 | n^{(0)} \rangle}{E_n^{(0)} - E_k^{(0)}}
+\end{equation}
+
+Possiamo compattare questa espressione sfruttando le proprietà degli operatori hermitiani. Sappiamo che l'operatore perturbazione $H_1$ è hermitiano (essendo un'osservabile fisica), pertanto vale la relazione:
+\begin{equation}
+\langle n^{(0)} | H_1 | k^{(0)} \rangle = \left( \langle k^{(0)} | H_1 | n^{(0)} \rangle \right)^*
+\end{equation}
+Ovvero, l'elemento di matrice $\langle n^{(0)} \vert{} H_1 \vert{} k^{(0)} \rangle$ è il \textbf{complesso coniugato} dell'elemento $\langle k^{(0)} \vert{} H_1 \vert{} n^{(0)} \rangle$.
+
+Moltiplicando un numero complesso per il suo coniugato si ottiene il modulo quadro. La formula finale per la correzione dell'energia al secondo ordine assume quindi la forma compatta ed elegante:
+\begin{equation}
+E_n^{(2)} = \sum_{k \neq n} \frac{\big| \langle k^{(0)} | H_1 | n^{(0)} \rangle \big|^2}{E_n^{(0)} - E_k^{(0)}}
+\end{equation}
+
+\section{Analisi della Correzione al Secondo Ordine}
+
+\subsection{Formulazione Compatta}
+Come accennato al termine della derivazione precedente, possiamo scrivere in forma più compatta la correzione all'energia al secondo ordine sfruttando le proprietà di hermiticita dell'operatore perturbazione. Sapendo che l'elemento di matrice $\langle n^{(0)} \vert{} H_1 \vert{} k^{(0)} \rangle$ è esattamente il complesso coniugato dell'elemento simmetrico $\langle k^{(0)} \vert{} H_1 \vert{} n^{(0)} \rangle$, il loro prodotto restituisce il modulo quadro.
+
+La formula per la correzione dell'energia al secondo ordine, $E_n^{(2)}$, assume quindi l'espressione formale:
+\begin{equation}
+E_n^{(2)} = \sum_{k \neq n} \frac{\big| \langle k^{(0)} | H_1 | n^{(0)} \rangle \big|^2}{E_n^{(0)} - E_k^{(0)}}
+\end{equation}
+
+\subsection{L'Importanza del Secondo Ordine e la Parità}
+Potrebbe sorgere spontanea una domanda: perché in Meccanica Quantistica, nello studio delle perturbazioni, è prassi comune calcolare non solo il primo, ma anche il secondo ordine? Si tratta solo di una volontà di essere computazionalmente "più precisi"? In realtà, la motivazione fisica è ben più profonda: \textbf{in moltissimi casi fisici di interesse, la correzione al primo ordine si annulla identicamente}.
+
+Consideriamo l'espressione del primo ordine per l'energia:
+\begin{equation}
+E_n^{(1)} = \langle n^{(0)} | H_1 | n^{(0)} \rangle = \int_{-\infty}^{+\infty} \psi_n^*(x) , H_1 , \psi_n(x) , dx
+\end{equation}
+Esistono numerose situazioni in cui lo stato imperturbato $\vert{}n^{(0)}\rangle$ possiede una \textbf{parità definita} (la sua funzione d'onda spaziale $\psi_n(x)$ è puramente pari o puramente dispari). Il prodotto $\psi_n^*(x) \psi_n(x) = \vert{}\psi_n(x)\vert{}^2$ restituisce in ogni caso una funzione \textbf{pari}.
+
+Supponiamo ora che anche l'operatore di interazione $H_1$ abbia una parità definita e che sia \textbf{dispari} (come ad esempio una perturbazione lineare proporzionale a $x$). L'integrale globale diventa il prodotto tra una funzione pari (il modulo quadro della funzione d'onda) e una funzione dispari (l'operatore $H_1$). Il risultato è un integrando dispari su un dominio di integrazione simmetrico, il che implica per ragioni di parità che l'integrale sia esattamente zero:
+\begin{equation}
+E_n^{(1)} = 0
+\end{equation}
+In questi frangenti, non essendovi correzione al primo ordine, il termine di secondo ordine diventa la correzione principale (il *leading term*) e assume un'importanza fondamentale per descrivere la fisica del sistema perturbato.
+
+\section{Correzione al Secondo Ordine per lo Stato Fondamentale}
+
+Una delle deduzioni fisiche più eleganti e immediate si ottiene applicando la formula del secondo ordine allo \textbf{stato fondamentale} del sistema (il *ground state*), che indicheremo con l'indice $n=0$. Sostituendo tale indice nella formula, abbiamo:
+\begin{equation}
+E_0^{(2)} = \sum_{k \neq 0} \frac{\big| \langle k^{(0)} | H_1 | 0^{(0)} \rangle \big|^2}{E_0^{(0)} - E_k^{(0)}}
+\end{equation}
+
+Analizziamo il segno dei termini presenti nella sommatoria:
+\begin{itemize}
+\item Il \textbf{numeratore} è un modulo quadro, per cui rappresenta una quantità strettamente positiva (o al limite nulla).
+\item Il \textbf{denominatore} è la differenza tra l'energia dello stato fondamentale $E_0^{(0)}$ e l'energia di un generico stato eccitato $E_k^{(0)}$. Essendo lo stato fondamentale quello a minima energia, si ha per definizione $E_0^{(0)} < E_k^{(0)}$ per qualsiasi $k \neq 0$. Pertanto, \textbf{il denominatore è sempre negativo}.
+\end{itemize}
+
+Questo ci porta a una conclusione universale: \textbf{la correzione al secondo ordine all'energia dello stato fondamentale è sempre una quantità negativa}, del tutto indipendentemente dal segno o dalla forma specifica dell'interazione $H_1$. La perturbazione tende cioè sempre ad abbassare ulteriormente il livello di minima energia del sistema.
+
+\subsection{Repulsione dei Livelli e Deformazione dello Stato}
+Questo risultato è espressione di un principio più ampio noto come \textbf{repulsione dei livelli} energetici. In presenza di una perturbazione, i livelli interagenti tendono a respingersi l'un l'altro. Lo stato fondamentale, trovandosi in fondo allo spettro discreto e avendo tutti gli altri stati unicamente al di sopra di esso, subisce esclusivamente una "spinta" verso il basso.
+
+Se analizzassimo l'effetto della perturbazione (ad esempio un potenziale proporzionale a potenze di $x$, come $x^3$) sulla funzione d'onda, osserveremmo una deformazione. L'interazione "mescola" lo stato fondamentale con stati eccitati specifici ammessi dalle regole di selezione, alterando il profilo spaziale della funzione d'onda affinché acquisisca caratteristiche e parità parzialmente mutuate dai livelli energetici superiori con i quali va a sovrapporsi.
+
+\section{Importanza del Senso Fisico e Consigli Metodologici}
+
+\subsection{Controllo Teorico sui Calcoli Numerici (Sanity Checks)}
+L'aver ricavato analiticamente proprietà come il segno della correzione dello stato fondamentale costituisce uno strumento d'indagine vitale.
+Immaginiamo che, in un futuro contesto di ricerca, dobbiate scrivere un programma per calcolare numericamente lo spettro energetico di un sistema perturbato complesso. È fisiologico che le prime versioni di un codice presentino dei bug. Se il vostro algoritmo dovesse produrre una correzione al secondo ordine per il ground state di segno positivo, disporrete di un campanello d'allarme immediato: capirete al volo che c'è un errore concettuale o implementativo (una violazione dei princìpi variazionali della teoria), proprio perché conoscete la struttura analitica dell'approssimazione sottostante.
+
+\subsection{Consigli per le Prove Scritte: Unità di Misura e Ordini di Grandezza}
+Per concludere, vi fornisco alcune raccomandazioni essenziali in vista delle prove scritte di fine corso (valide per ogni esame di Fisica):
+
+\begin{enumerate}
+\item \textbf{Le unità di misura:} Controllate sempre l'analisi dimensionale dei vostri risultati. Se il calcolo richiede un'ampiezza o una probabilità di transizione, il risultato finale deve obbligatoriamente essere un numero adimensionale compreso tra $0$ e $1$. Se calcolate una correzione energetica, questa deve avere le unità di misura corrette per un'energia.
+
+```
+\item \textbf{Gli ordini di grandezza:} Dovete sempre saper giudicare criticamente il numero che restituite alla fine dell'esercizio. Ad esempio, se state studiando la perturbazione su un sistema atomico e ottenete come risultato energetico un valore dell'ordine dei $1000 \text{ TeV}$, dovete accorgervi che si tratta di un risultato fisicamente insensato. È un errore logico pari a quello di un esame medico che registrasse per un paziente una pressione sanguigna di $100.000 \text{ atmosfere}$ (una condizione che farebbe ovviamente esplodere i vasi sanguigni!).
+
+```
+
+\end{enumerate}
+
+Un errore di distrazione durante l'algebra di un lungo esercizio è tollerabile e umano. Tuttavia, se ottenete un numero palesemente assurdo, è richiesto un commento. Scrivere in fondo all'esercizio: \textit{"Ottengo questo risultato numerico, ma sono consapevole che è errato perché viola tale limite fisico o ordine di grandezza atteso per questo sistema"} è valutato in maniera estremamente positiva, perché dimostra una reale padronanza della materia e senso critico rispetto a chi applica in modo cieco le formule.

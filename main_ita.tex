@@ -1,0 +1,54 @@
+\documentclass[a4paper, 10 pt]{book}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{titling}
+
+
+\newtheorem{definizione}{Definizione.}
+\newtheorem{osservazione}{Osservazione}
+\newtheorem{esempio}{Esempio}
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{exr}{Esercizio}
+
+
+\newcommand{\numberset}{\mathbb}
+\newcommand{\N}{\numberset{N}}
+\newcommand{\R}{\numberset{R}}
+\newcommand{\C}{\numberset{C}}
+\newcommand{\Z}{\numberset{Z}}
+\newcommand{\Q}{\numberset{Q}}
+\newcommand{\E}{\numberset{E}}
+\newcommand{\rel}[1][R]{\mathrel{\mathcal{#1}}}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\Huge\bfseries Quantum Physics\par}
+    
+    \vspace{1.5cm}
+    {\Large Federico Vittorio\par}
+    
+    \vspace{0.6cm}
+    {\large \today\par}
+    
+    \vfill
+    
+    {\normalsize\itshape Versione italiana\par}
+    \vspace{0.3cm}
+    {\large Anno Accademico 2026/2027\par}
+    \vspace*{1cm}
+\end{titlepage}
+\tableofcontents
+
+\input{lezioni_ita/lezione01.tex}
+
+\input{lezioni_ita/lezione02.tex}
+\end{document}

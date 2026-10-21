@@ -1,0 +1,1157 @@
+\chapter{Lezione 2 - 07-10-2026}
+
+\section{Proprietà della Teoria Perturbativa sul Ground State}
+
+Una proprietà fondamentale e dimostrabile in via del tutto generale riguarda l'applicazione della teoria perturbativa allo stato fondamentale (il \textit{ground state}) di un sistema. Nello specifico, si può dimostrare che \textbf{il calcolo dell'energia arrestato al primo ordine perturbativo fornisce sempre una sovrastima dell'energia esatta del ground state}.
+
+Possiamo scrivere l'energia del ground state calcolata al primo ordine in funzione del parametro perturbativo $\lambda$ come la somma dell'energia imperturbata e della correzione al primo ordine:
+\begin{equation}
+E_0^{(1)}(\lambda) = E_0^{(0)} + \lambda E_0^{(1)}
+\end{equation}
+Questa quantità, rispetto a quella che sarebbe la soluzione esatta del sistema, risulta essere sempre leggermente maggiore.
+
+\subsection{L'intuizione dal Secondo Ordine}
+Possiamo iniziare a sospettare la validità di questa affermazione analizzando il termine di secondo ordine. Come abbiamo visto in precedenza, la correzione al secondo ordine per il ground state è sempre rigorosamente negativa:
+\begin{equation}
+E_0^{(2)} = \sum_{k \neq 0} \frac{|\langle k^{(0)} | H_1 | 0^{(0)} \rangle|^2}{E_0^{(0)} - E_k^{(0)}} < 0
+\end{equation}
+Essendo il numeratore sempre positivo (è un modulo quadro) e il denominatore sempre negativo (poiché le energie degli stati eccitati $E_k^{(0)}$ sono per definizione maggiori dell'energia del ground state $E_0^{(0)}$), l'intero termine abbassa l'energia. Questo fatto ci fa intuire che, fermandoci al primo ordine, stiamo approssimando l'energia con un valore che è "un po' di più" di quello che dovrebbe essere, necessitando appunto di una correzione negativa al passo successivo.
+
+\subsection{Dimostrazione tramite il Principio Variazionale}
+Tuttavia, non abbiamo bisogno di fermarci al sospetto: possiamo dimostrare questa sovrastima in maniera rigorosa utilizzando il \textbf{principio variazionale}.
+
+Consideriamo l'hamiltoniana totale del sistema:
+\begin{equation}
+H = H_0 + \lambda H_1
+\end{equation}
+Ricordiamo che l'energia al primo ordine della teoria perturbativa non è altro che il valore di aspettazione dell'hamiltoniana totale valutata sullo stato fondamentale imperturbato $\vert{}0^{(0)}\rangle$. Infatti:
+\begin{equation}
+\langle 0^{(0)} | H | 0^{(0)} \rangle = \langle 0^{(0)} | H_0 + \lambda H_1 | 0^{(0)} \rangle = E_0^{(0)} + \lambda \langle 0^{(0)} | H_1 | 0^{(0)} \rangle = E_0^{(0)} + \lambda E_0^{(1)}
+\end{equation}
+
+Il principio variazionale stabilisce che il valore di aspettazione dell'hamiltoniana esatta calcolato su uno stato di prova qualsiasi è sempre maggiore o uguale all'energia esatta dello stato fondamentale ($E_{esatta}$).
+Siccome lo stato imperturbato $\vert{}0^{(0)}\rangle$ \textit{non} è l'autostato esatto dell'hamiltoniana totale $H$, il valore di aspettazione fornirà un'energia superiore a quella reale:
+\begin{equation}
+E_0^{(0)} + \lambda E_0^{(1)} \ge E_{esatta}
+\end{equation}
+Da qui la dimostrazione rigorosa che l'energia stimata al primo ordine è sempre un limite superiore (sovrastima) per l'energia esatta del ground state.
+
+\section{Condizioni di Validità della Teoria Perturbativa}
+
+L'idea di base della teoria perturbativa è prendere l'energia e svilupparla in serie di potenze del parametro $\lambda$. Tuttavia, fino a questo momento, abbiamo detto che la teoria è valida per "$\lambda$ piccolo", un'affermazione concettualmente troppo generica. Cosa significa matematicamente che $\lambda$ è piccolo?
+
+Si potrebbe pensare che significhi che gli elementi di matrice della perturbazione ($\lambda \langle k^{(0)} \vert{} H_1 \vert{} n^{(0)} \rangle$) debbano essere piccoli rispetto alla distanza tra i livelli energetici imperturbati. Per visualizzare esattamente e in maniera rigorosa da dove emerga questa condizione, studiamo un caso risolvibile esattamente: il \textbf{sistema a due livelli} (\textit{two-level system}).
+
+\subsection{Il Sistema a Due Livelli: Formulazione}
+Consideriamo uno spazio di Hilbert di dimensione 2. L'hamiltoniana imperturbata $H_0$ è già diagonalizzata, pertanto i suoi autostati di base possono essere rappresentati dai vettori colonna $\binom{1}{0}$ e $\binom{0}{1}$. In questa base, $H_0$ si scrive come:
+\begin{equation}
+H_0 = \begin{pmatrix}
+E_1^{(0)} & 0 \
+0 & E_2^{(0)}
+\end{pmatrix}
+\end{equation}
+Aggiungiamo ora una perturbazione $\lambda V$. Supponiamo che questa interazione abbia esclusivamente elementi \textbf{fuori diagonale}. L'hamiltoniana totale diventerà quindi:
+\begin{equation}
+H = H_0 + \lambda V = \begin{pmatrix}
+E_1^{(0)} & \lambda V \
+\lambda V & E_2^{(0)}
+\end{pmatrix}
+\end{equation}
+(Per semplicità, abbiamo assunto che gli elementi di matrice dell'interazione siano reali e simmetrici).
+
+\subsection{Soluzione Esatta del Sistema}
+A differenza di sistemi a infiniti gradi di libertà, questo sistema può essere risolto in maniera \textbf{esatta} calcolando gli autovalori della matrice $2 \times 2$. Dobbiamo imporre che il determinante della matrice $(H - E\mathbb{I})$ sia nullo:
+\begin{equation}
+\det \begin{pmatrix}
+E_1^{(0)} - E & \lambda V \
+\lambda V & E_2^{(0)} - E
+\end{pmatrix} = 0
+\end{equation}
+Sviluppando il determinante otteniamo un'equazione di secondo grado in $E$:
+\begin{equation}
+(E_1^{(0)} - E)(E_2^{(0)} - E) - \lambda^2 V^2 = 0
+\end{equation}
+\begin{equation}
+E^2 - (E_1^{(0)} + E_2^{(0)})E + E_1^{(0)}E_2^{(0)} - \lambda^2 V^2 = 0
+\end{equation}
+Risolvendo questa equazione di secondo grado, troviamo i due autovalori esatti dell'energia in funzione di $\lambda$:
+\begin{equation}
+E_{\pm}(\lambda) = \frac{E_1^{(0)} + E_2^{(0)}}{2} \pm \frac{1}{2} \sqrt{(E_1^{(0)} - E_2^{(0)})^2 + 4\lambda^2 V^2}
+\end{equation}
+Questa è la soluzione analitica esatta. Avendola a disposizione, è interessante vedere cosa ci darebbe la teoria perturbativa, senza ricalcolarla da zero, ma semplicemente effettuando uno \textbf{sviluppo di Taylor} della soluzione esatta.
+
+\subsection{Sviluppo in Serie e Raggio di Convergenza}
+Per espandere in serie l'espressione di $E_{\pm}(\lambda)$, dobbiamo analizzare la radice quadrata. Consideriamo lo sviluppo notevole della funzione $\sqrt{1+z}$:
+\begin{equation}
+\sqrt{1+z} \approx 1 + \frac{z}{2} - \frac{z^2}{8} + \dots
+\end{equation}
+Questa espansione in serie di Taylor ha un \textbf{raggio di convergenza} ben preciso: la serie converge esclusivamente se il modulo dell'argomento è strettamente minore di uno, ovvero $\vert{}z\vert{} < 1$.
+
+Per ricondurre la nostra soluzione esatta a questa forma, raccogliamo sotto radice il termine $(E_1^{(0)} - E_2^{(0)})^2$:
+\begin{equation}
+\sqrt{(E_1^{(0)} - E_2^{(0)})^2 + 4\lambda^2 V^2} = |E_1^{(0)} - E_2^{(0)}| \sqrt{1 + \frac{4\lambda^2 V^2}{(E_1^{(0)} - E_2^{(0)})^2}}
+\end{equation}
+Confrontando le espressioni, identifichiamo il nostro parametro $z$:
+\begin{equation}
+z = \frac{4\lambda^2 V^2}{(E_1^{(0)} - E_2^{(0)})^2}
+\end{equation}
+Affinché lo sviluppo in serie dell'energia (che è esattamente ciò che fa la teoria perturbativa) converga e abbia significato fisico, dobbiamo imporre la condizione di convergenza $\vert{}z\vert{} < 1$.
+
+Da qui emerge in modo chiaro, matematico ed inequivocabile la condizione di validità della teoria perturbativa: il quadrato degli elementi di matrice della perturbazione deve essere molto più piccolo del quadrato della distanza tra i livelli energetici imperturbati. Se questa condizione viene violata, la serie diverge e l'approccio perturbativo fallisce miseramente.
+
+\section{Validità della Teoria Perturbativa: Analisi di un Sistema a Due Livelli}
+
+\subsection{L'Equazione di Convergenza}
+Riprendendo lo sviluppo in serie di Taylor analizzato nella lezione precedente, abbiamo individuato il termine formale che fa da argomento alla serie:
+\begin{equation}
+z = \frac{4\lambda^2 V^2}{(E_1^{(0)} - E_2^{(0)})^2}
+\end{equation}
+Affinché lo sviluppo in serie dell'energia sia matematicamente sensato, sappiamo che il raggio di convergenza impone $\vert{}z\vert{} < 1$. Qualora il modulo di $z$ fosse maggiore di uno, la serie divergerebbe e la teoria perturbativa risulterebbe del tutto inapplicabile.
+
+\subsection{Condizione Fisica per "Perturbazione Piccola"}
+Imponendo questa condizione matematica sulla variabile $z$, andiamo a tradurla nella condizione fisica fondamentale che definisce cosa significhi avere una "perturbazione piccola":
+\begin{equation}
+|z| < 1 \implies \frac{4\lambda^2 V^2}{(E_1^{(0)} - E_2^{(0)})^2} < 1
+\end{equation}
+\begin{equation}
+|\lambda V| < \frac{|E_1^{(0)} - E_2^{(0)}|}{2}
+\end{equation}
+(Si noti che, algebricamente parlando, il fattore 2 emerge estraendo la radice quadrata del termine $4$ a numeratore).
+
+Questa disuguaglianza rappresenta un risultato cruciale, in quanto ci dice che il concetto di "perturbazione piccola" ($\lambda V$) in Meccanica Quantistica \textbf{non va valutato in senso assoluto rispetto all'energia dei singoli livelli, bensì va confrontato con la differenza di energia (la "spaziatura") tra i livelli imperturbati coinvolti}.
+
+Questa dipendenza dal $\Delta E$ è una peculiarità intrinseca della meccanica quantistica che ritornerà costantemente in numerose applicazioni.
+
+\section{Espansione di Taylor e Risultati della Teoria Perturbativa}
+
+Avendo stabilito il raggio di convergenza, procediamo a espandere la formula esatta dell'energia $E_{\pm}(\lambda)$ trovata per il sistema a due livelli.
+
+L'espressione esatta di partenza (sviluppando i termini incrociati) è:
+\begin{equation}
+E_{\pm}(\lambda) = \frac{E_1^{(0)} + E_2^{(0)}}{2} \pm \frac{1}{2} (E_1^{(0)} - E_2^{(0)}) \sqrt{1 + z}
+\end{equation}
+\textit{Nota: Ai fini della trattazione formale, supponiamo (senza perdita di generalità) che $E_1^{(0)} > E_2^{(0)}$, cosicché la quantità $(E_1^{(0)} - E_2^{(0)})$ sia positiva quando portata fuori dalla radice. Se ponessimo $\lambda=0$, il segno "$+$" riprodurrebbe $E_1^{(0)}$ e il segno "$-$" riprodurrebbe $E_2^{(0)}$.}
+
+Sostituendo l'espansione di Taylor $\sqrt{1+z} \approx 1 + \frac{z}{2}$, otteniamo:
+\begin{equation}
+E_{\pm}(\lambda) \approx \frac{E_1^{(0)} + E_2^{(0)}}{2} \pm \frac{1}{2} (E_1^{(0)} - E_2^{(0)}) \left(1 + \frac{z}{2}\right)
+\end{equation}
+
+Andiamo ora a ricostruire le energie per valutare le correzioni perturbatibe. Analizziamo il caso relativo al segno "$+$" (che descrive lo stato di energia superiore, associato ad $E_1$):
+\begin{equation}
+E_1(\lambda) \approx \frac{E_1^{(0)} + E_2^{(0)}}{2} + \frac{1}{2} (E_1^{(0)} - E_2^{(0)}) + \frac{1}{2} (E_1^{(0)} - E_2^{(0)}) \frac{z}{2}
+\end{equation}
+I primi due termini si sommano:
+\begin{equation}
+\frac{E_1^{(0)} + E_2^{(0)} + E_1^{(0)} - E_2^{(0)}}{2} = \frac{2 E_1^{(0)}}{2} = E_1^{(0)}
+\end{equation}
+In questo modo, abbiamo recuperato correttamente l'autovalore imperturbato (l'ordine zero).
+
+Il termine rimanente rappresenta la correzione dovuta alla perturbazione. Sostituendo al posto di $z$ la sua espressione estesa:
+\begin{equation}
+\text{Correzione} = \frac{1}{2} (E_1^{(0)} - E_2^{(0)}) \frac{1}{2} \left[ \frac{4\lambda^2 V^2}{(E_1^{(0)} - E_2^{(0)})^2} \right]
+\end{equation}
+Semplificando i fattori 4 con i due denominatori, e cancellando un fattore $(E_1^{(0)} - E_2^{(0)})$ a numeratore e denominatore, otteniamo:
+\begin{equation}
+\text{Correzione} = \frac{\lambda^2 V^2}{E_1^{(0)} - E_2^{(0)}}
+\end{equation}
+Quindi, la soluzione esatta sviluppata in serie ci fornisce:
+\begin{equation}
+E_1(\lambda) = E_1^{(0)} + \frac{\lambda^2 V^2}{E_1^{(0)} - E_2^{(0)}} + \dots
+\end{equation}
+
+\subsection{Assenza di Correzioni al Primo Ordine}
+Un aspetto immediatamente evidente in questo sviluppo è che la correzione contiene solamente termini dipendenti da $\lambda^2$ (o potenze superiori di grado pari, come $\lambda^4, \lambda^6$). \textbf{Manca del tutto un termine proporzionale a $\lambda^1$}.
+
+Poiché per definizione la teoria perturbativa non è altro che uno sviluppo in serie dell'energia esatta (in virtù dell'ipotesi di analiticità), se l'espansione matematica del risultato esatto non presenta potenze dispari di $\lambda$, significa che, ricalcolando il problema tramite il formalismo perturbativo di Rayleigh-Schrödinger, non dovremo trovare alcuna correzione al primo ordine.
+
+\subsection{Conferma tramite il Formalismo Perturbativo}
+Verifichiamo analiticamente questa previsione calcolando esplicitamente la correzione al primo ordine per il livello 1, che in teoria delle perturbazioni è data dal valore di aspettazione dell'operatore $H_1$ sullo stato imperturbato:
+\begin{equation}
+E_1^{(1)} = \langle 1^{(0)} | \lambda V | 1^{(0)} \rangle
+\end{equation}
+In forma vettoriale, lo stato $\vert{}1^{(0)}\rangle$ è rappresentato dal versore colonna $\binom{1}{0}$, e il bra corrispondente $\langle 1^{(0)}\vert{}$ dal vettore riga $\begin{pmatrix} 1 & 0 \end{pmatrix}$. Sappiamo che la perturbazione $\lambda V$ possiede unicamente termini fuori diagonale. Il calcolo matriciale diventa:
+\begin{equation}
+E_1^{(1)} = \begin{pmatrix} 1 & 0 \end{pmatrix} \begin{pmatrix} 0 & \lambda V \ \lambda V & 0 \end{pmatrix} \begin{pmatrix} 1 \ 0 \end{pmatrix}
+\end{equation}
+Svolgendo prima il prodotto matrice-vettore a destra:
+\begin{equation}
+\begin{pmatrix} 0 & \lambda V \ \lambda V & 0 \end{pmatrix} \begin{pmatrix} 1 \ 0 \end{pmatrix} = \begin{pmatrix} 0 \cdot 1 + \lambda V \cdot 0 \ \lambda V \cdot 1 + 0 \cdot 0 \end{pmatrix} = \begin{pmatrix} 0 \ \lambda V \end{pmatrix}
+\end{equation}
+E infine moltiplicando scalarmente per il vettore riga a sinistra:
+\begin{equation}
+\begin{pmatrix} 1 & 0 \end{pmatrix} \begin{pmatrix} 0 \ \lambda V \end{pmatrix} = 1 \cdot 0 + 0 \cdot \lambda V = 0
+\end{equation}
+Abbiamo così dimostrato rigorosamente che la correzione al primo ordine è \textbf{zero}, in perfetto e necessario accordo con l'espansione di Taylor della soluzione esatta.
+
+\subsection{Conferma della Correzione al Secondo Ordine}
+Proviamo a spingerci al secondo ordine perturbativo. La formula di Rayleigh-Schrödinger per $E_1^{(2)}$ (incorporando il $\lambda$ all'interno di $V$) è:
+\begin{equation}
+E_1^{(2)} = \sum_{k \neq 1} \frac{\big| \langle k^{(0)} | \lambda V | 1^{(0)} \rangle \big|^2}{E_1^{(0)} - E_k^{(0)}}
+\end{equation}
+In un sistema a due livelli, la sommatoria si riduce a un unico termine, corrispondente a $k=2$:
+\begin{equation}
+E_1^{(2)} = \frac{\big| \langle 2^{(0)} | \lambda V | 1^{(0)} \rangle \big|^2}{E_1^{(0)} - E_2^{(0)}}
+\end{equation}
+Calcoliamo l'elemento di matrice a numeratore:
+\begin{equation}
+\langle 2^{(0)} | \lambda V | 1^{(0)} \rangle = \begin{pmatrix} 0 & 1 \end{pmatrix} \begin{pmatrix} 0 & \lambda V \ \lambda V & 0 \end{pmatrix} \begin{pmatrix} 1 \ 0 \end{pmatrix} = \begin{pmatrix} 0 & 1 \end{pmatrix} \begin{pmatrix} 0 \ \lambda V \end{pmatrix} = \lambda V
+\end{equation}
+Prendendone il modulo quadro e inserendolo nella formula, otteniamo:
+\begin{equation}
+E_1^{(2)} = \frac{\lambda^2 V^2}{E_1^{(0)} - E_2^{(0)}}
+\end{equation}
+Questo risultato coincide \textbf{esattamente} col termine ricavato dallo sviluppo di Taylor della soluzione analitica. Questa aderenza totale (stessi gradi e potenze) certifica la profonda coerenza matematica tra il formalismo perturbativo di Rayleigh-Schrödinger (quando convergente) e l'espansione formale della soluzione esatta del sistema.
+
+\section{Condizioni di Validità della Teoria Perturbativa e Casi Limite}
+
+\subsection{L'Importanza della Distanza tra i Livelli}
+Dall'analisi del sistema a due livelli e dalla derivazione della condizione per il raggio di convergenza della serie di Taylor ($\vert{}z\vert{} < 1$), emerge un concetto fisico cardine: affinché la teoria perturbativa sia applicabile, \textbf{non è sufficiente che la perturbazione sia piccola in valore assoluto, o piccola rispetto al valore dell'energia dei singoli livelli, ma deve essere piccola rispetto alla distanza (spaziatura) tra i livelli energetici coinvolti}.
+
+Matematicamente, per il sistema a due livelli, questo si traduce nella condizione:
+\begin{equation}
+|\lambda V| < \frac{|E_1^{(0)} - E_2^{(0)}|}{2}
+\end{equation}
+
+Questo implica che la teoria perturbativa entra in forte crisi (la serie non converge) quando due livelli energetici imperturbati si trovano molto vicini tra loro ($\vert{}E_1^{(0)} - E_2^{(0)}\vert{} \approx 0$), ovvero nei casi di degenerazione o quasi-degenerazione, anche se l'energia assoluta di tali stati è molto grande. Questa idea, qui derivata rigorosamente per un sistema a due livelli, si estende concettualmente ai sistemi con infiniti gradi di libertà.
+
+\textit{Nota metodologica: Sebbene in matematica se una serie non converge il calcolo è privo di senso, in fisica capita a volte (avendo "più coraggio") di ottenere informazioni utili troncando una serie asintotica anche al di fuori del suo stretto raggio di convergenza, ma resta fermo il principio generale di validità ricavato.}
+
+\section{Limiti Strutturali: Il Fallimento della Teoria Perturbativa}
+
+Esistono tuttavia dei casi e dei fenomeni fisici in cui, \textbf{nonostante il parametro perturbativo $\lambda$ sia reso piccolo a piacere}, la teoria perturbativa fallisce clamorosamente, non riuscendo a cogliere le caratteristiche fondamentali del sistema perturbato.
+
+Consideriamo un esempio classico e molto istruttivo.
+Partiamo dall'hamiltoniana imperturbata dell'oscillatore armonico quantistico unidimensionale:
+\begin{equation}
+H_0 = \frac{p^2}{2m} + \frac{1}{2} m \omega^2 x^2
+\end{equation}
+Aggiungiamo a questo sistema una perturbazione quartica, definendo l'hamiltoniana totale:
+\begin{equation}
+H = \frac{p^2}{2m} + \frac{1}{2} m \omega^2 x^2 + \lambda x^4
+\end{equation}
+
+\subsection{Caso 1: $\lambda > 0$ (Perturbazione Positiva)}
+Se il parametro $\lambda$ è strettamente positivo ($\lambda > 0$), il potenziale totale assume la forma di una "buca" più ripida rispetto alla semplice parabola dell'oscillatore armonico (poiché $x^4$ cresce più velocemente di $x^2$ per $x$ grandi).
+
+In questo caso, se $\lambda$ è sufficientemente piccolo, la teoria perturbativa fornisce risultati eccellenti per i livelli energetici più bassi (vicini al minimo del potenziale, dove domina il termine $x^2$).
+Tuttavia, sorgono delle difficoltà se si vogliono studiare \textbf{stati altamente eccitati} (grandi energie). Per grandi valori dell'energia (e quindi grandi valori di $x$), il termine perturbativo $\lambda x^4$ finisce sempre per dominare sul termine armonico $\frac{1}{2} m \omega^2 x^2$, indipendentemente da quanto $\lambda$ sia stato scelto piccolo in partenza. Di conseguenza, per gli stati ad alta energia, la correzione diventerà necessariamente grande (violando l'ipotesi di perturbazione piccola) e lo sviluppo perturbativo fallirà. Questo è il motivo per cui, anche in teorie di campo più avanzate, l'approccio perturbativo ad altissime energie presenta spesso notevoli difficoltà.
+
+\subsection{Caso 2: $\lambda < 0$ (Instabilità del Vuoto e Limite Non Perturbativo)}
+Consideriamo ora lo scenario in cui il parametro $\lambda$ è negativo ($\lambda < 0$).
+Indipendentemente da quanto $\vert{}\lambda\vert{}$ sia piccolo (ad esempio, $\lambda = -10^{-100}$), l'andamento asintotico del potenziale totale $V(x) = \frac{1}{2} m \omega^2 x^2 - \vert{}\lambda\vert{} x^4$ per $x \to \pm \infty$ sarà sempre dominato dal termine negativo $x^4$.
+
+Il profilo del potenziale si presenterà inizialmente (vicino a $x=0$) come una parabola concava verso l'alto, ma a una certa distanza $x$ (i punti di flesso) la curva si piegherà irreversibilmente verso il basso, tendendo a $-\infty$.
+Questo significa che il sistema non è limitato inferiormente; \textbf{non esiste uno stato legato stabile}. La particella, pur trovandosi inizialmente nella buca locale vicina all'origine, può subire l'\textbf{effetto tunnel} quantistico e fuggire verso l'infinito.
+
+\textbf{Nessun ordine della teoria perturbativa (primo, secondo, o ennesimo) potrà mai predire o descrivere questo effetto tunnel.} L'impostazione stessa della teoria perturbativa fallisce a livello strutturale.
+L'idea di base della teoria, come ricordato in precedenza, è di scrivere i nuovi stati come combinazione lineare (appartenenti allo stesso spazio di Hilbert) degli stati imperturbati di partenza. Nel caso dell'oscillatore armonico, la base è composta da funzioni d'onda di stati legati, che decadono esponenzialmente a infinito (sono a quadrato sommabile). L'effetto tunnel per il potenziale ribaltato richiede invece stati liberi, non confinati. Nessuna combinazione lineare di funzioni che vanno a zero all'infinito può generare una funzione d'onda che descrive una particella che sfugge all'infinito.
+
+Questo è un esempio emblematico di \textbf{fenomeno intrinsecamente non-perturbativo}, che non può essere colto dallo sviluppo in serie di Taylor dell'energia per quanto fine esso sia.
+
+\section{Adimensionalizzazione e Costanti di Accoppiamento}
+
+\subsection{L'Importanza dell'Analisi Dimensionale}
+Nell'espressione $H = H_0 + \lambda x^4$, abbiamo utilizzato il parametro $\lambda$ come se fosse il $\lambda$ formale (adimensionale, variabile tra $0$ e $1$) della teoria di Rayleigh-Schrödinger. \textbf{Questo è un errore fisico concettuale}.
+
+Un'analisi dimensionale rivela immediatamente il problema. Il termine $\lambda x^4$ deve avere le dimensioni di un'energia ($[E]$). Poiché $x$ ha le dimensioni di una lunghezza ($[L]$), la costante $\lambda$ deve obbligatoriamente avere le dimensioni fisiche di un'energia divisa per una lunghezza alla quarta:
+\begin{equation}
+[\lambda] = \frac{[E]}{[L]^4}
+\end{equation}
+Se un parametro è dotato di dimensioni fisiche, l'affermazione "$\lambda$ è piccolo" è del tutto priva di significato fisico oggettivo, poiché il suo valore numerico dipende arbitrariamente dal sistema di unità di misura scelto (basta cambiare le unità di misura per trasformare un numero enorme in uno nell'ordine di $10^{-120}$).
+
+\subsection{Scala Energetica e Spaziale Naturale}
+Per trattare correttamente il problema tramite la teoria perturbativa, è indispensabile riformulare il parametro di accoppiamento rendendolo \textbf{adimensionale}. Questo si ottiene estraendo dall'hamiltoniana le \textbf{scale naturali} di energia e di distanza caratteristiche del sistema fisico in esame (l'oscillatore armonico).
+
+\begin{itemize}
+\item \textbf{Scala Energetica Naturale:} Per l'oscillatore armonico, l'unità naturale di energia (la distanza tra i livelli) è data dal quanto di energia:
+\begin{equation}
+E_{\text{nat}} = \hbar \omega
+\end{equation}
+
+```
+\item \textbf{Scala Spaziale Naturale (Distanza Tipica $d$):} Cerchiamo una distanza caratteristica $d$ per lo stato fondamentale. Un modo fisicamente intuitivo per ricavarla è imporre l'uguaglianza tra l'energia del punto di inversione classico (turning point) e l'energia quantistica dello stato fondamentale ($\frac{1}{2} \hbar \omega$). Ponendo l'energia potenziale classica uguale all'energia del ground state:
+\begin{equation}
+    \frac{1}{2} m \omega^2 d^2 = \frac{1}{2} \hbar \omega
+\end{equation}
+Isolando $d^2$, otteniamo il quadrato della distanza tipica quantistica (o lunghezza oscillante naturale):
+\begin{equation}
+    d^2 = \frac{\hbar}{m \omega} \implies d = \sqrt{\frac{\hbar}{m \omega}}
+\end{equation}
+\textit{(Si noti che questo termine compare esplicitamente nella definizione dell'operatore posizione in termini degli operatori di creazione e distruzione: $x = \sqrt{\frac{\hbar}{2m\omega}}(a + a^\dagger)$).}
+
+```
+
+\end{itemize}
+
+\subsection{Riformulazione Adimensionale}
+A questo punto, riscriviamo l'hamiltoniana originaria dividendo e moltiplicando per queste costanti naturali, al fine di esplicitare un parametro perturbativo $\bar{\lambda}$ che sia un numero puro (adimensionale).
+
+Vogliamo scrivere il termine di interazione nella forma $\bar{\lambda} \, E_{\text{nat}} \, \left(\frac{x}{d}\right)^4$. Operando le sostituzioni:
+\begin{equation}
+\lambda x^4 = \left( \lambda \frac{d^4}{\hbar \omega} \right) \hbar \omega \left(\frac{x}{d}\right)^4 = \bar{\lambda} , \hbar \omega \left(\frac{x}{d}\right)^4
+\end{equation}
+Dove abbiamo definito il nuovo parametro formale adimensionale (il vero indicatore di "piccolezza" della perturbazione):
+\begin{equation}
+\bar{\lambda} \equiv \lambda \frac{d^4}{\hbar \omega} = \lambda \frac{\hbar^2}{m^2 \omega^3}
+\end{equation}
+
+(Nota: Nello svolgimento successivo dell'esercizio per il calcolo dell'elemento di matrice si utilizza tipicamente l'espressione $x = \frac{d}{\sqrt{2}}(a + a^\dagger)$ portando a raccogliere esplicitamente i fattori $\hbar \omega$ e le potenze di $d$).
+
+\section{Calcolo della Correzione al Primo Ordine per $\lambda x^4$}
+
+Svolgiamo ora un calcolo pratico per testare questo formalismo: calcoliamo la correzione al primo ordine per l'energia dello stato fondamentale dovuta alla perturbazione anarmonica quartica.
+Utilizziamo il formalismo di Dirac e gli operatori $a, a^\dagger$. Lo stato fondamentale imperturbato è denotato semplicemente come $\vert{}0\rangle$.
+
+La correzione al primo ordine $E_0^{(1)}$ è data dal valore di aspettazione dell'operatore perturbazione sullo stato fondamentale:
+\begin{equation}
+E_0^{(1)} = \langle 0 | \lambda x^4 | 0 \rangle
+\end{equation}
+
+Sostituendo l'operatore posizione $x = d \frac{(a + a^\dagger)}{\sqrt{2}}$:
+\begin{equation}
+x^4 = d^4 \frac{(a + a^\dagger)^4}{4}
+\end{equation}
+L'integrale diventa quindi:
+\begin{equation}
+E_0^{(1)} = \lambda \frac{d^4}{4} \langle 0 | (a + a^\dagger)^4 | 0 \rangle
+\end{equation}
+\textit{(Sostituendo le scale naturali trovate in precedenza, il termine fuori dalla parentesi può scriversi anche come $\bar{\lambda} \hbar \omega / 4$).}
+
+L'esercizio si riduce a dover calcolare l'elemento di matrice $\langle 0 \vert{} (a + a^\dagger)^4 \vert{} 0 \rangle$.
+Sviluppando il binomio $(a + a^\dagger)^4$, si ottengono $2^4 = 16$ termini formati da prodotti di operatori di creazione e distruzione. Ricordiamo tuttavia che l'operatore di distruzione $a$ applicato a destra sul vuoto $\vert{}0\rangle$ dà zero ($a\vert{}0\rangle = 0$), e l'operatore di creazione applicato a sinistra sul bra del vuoto $\langle 0 \vert{} a^\dagger$ dà parimenti zero. Affinché un termine sopravviva e restituisca un valore non nullo tra bra e ket del vuoto, deve contenere un numero uguale di operatori di creazione e distruzione, disposti in modo tale da non annichilare mai lo stato su cui agiscono (cioè riportare il sistema allo stato $\vert{}0\rangle$ dopo averlo eccitato).
+
+\section{Esercizio: Correzioni Perturbative per l'Oscillatore Armonico Anarmonico}
+
+Vogliamo applicare la teoria delle perturbazioni al calcolo delle correzioni ai livelli energetici di un oscillatore armonico perturbato da un termine quartico proporzionale a $x^4$. L'hamiltoniana del sistema è della forma $H = H_0 + H_1$, dove:
+\begin{equation}
+H_1 = \lambda \frac{\hbar^2}{m^2 \omega^3} \cdot \frac{m^2 \omega^3}{\hbar^2} x^4
+\end{equation}
+In questo esercizio, ometteremo di scrivere costantemente il parametro formale adimensionale $\bar{\lambda}$, incorporandolo implicitamente, e ci concentreremo sul calcolo dell'elemento di matrice operativo, utilizzando gli operatori di creazione e distruzione. Ricordiamo che l'operatore posizione si esprime come:
+\begin{equation}
+x = \sqrt{\frac{\hbar}{2m\omega}}(a + a^\dagger)
+\end{equation}
+
+Di conseguenza, il termine perturbativo $x^4$ diventerà:
+\begin{equation}
+x^4 = \left(\frac{\hbar}{2m\omega}\right)^2 (a + a^\dagger)^4 = \frac{\hbar^2}{4m^2\omega^2} (a + a^\dagger)^4
+\end{equation}
+
+Il nostro obiettivo è calcolare il valore di aspettazione dell'operatore $(a + a^\dagger)^4$ sullo stato fondamentale $\vert{}0\rangle$.
+Un consiglio procedurale per evitare di perdersi in un'algebra troppo laboriosa: non tentate di sviluppare direttamente la potenza quarta $(a + a^\dagger)^4$. Vi conviene invece calcolare prima l'azione dell'operatore al quadrato, $(a + a^\dagger)^2$, e poi elevare il risultato di nuovo al quadrato.
+
+\subsection{Azione dell'operatore $(a + a^\dagger)^2$}
+Sviluppiamo il quadrato del binomio tenendo conto che gli operatori $a$ e $a^\dagger$ \textbf{non commutano}:
+\begin{equation}
+(a + a^\dagger)^2 = a^2 + (a^\dagger)^2 + a a^\dagger + a^\dagger a
+\end{equation}
+Andiamo ad applicare questo operatore sullo stato generico $\vert{}n\rangle$:
+\begin{equation}
+(a + a^\dagger)^2 |n\rangle = a^2 |n\rangle + (a^\dagger)^2 |n\rangle + a a^\dagger |n\rangle + a^\dagger a |n\rangle
+\end{equation}
+Tuttavia, noi siamo interessati all'azione sul \textbf{ground state} $\vert{}0\rangle$. Sostituendo $n=0$:
+\begin{itemize}
+\item $a^2 \vert{}0\rangle = 0$ (l'operatore di distruzione annichila il vuoto al primo passaggio).
+\item $a^\dagger a \vert{}0\rangle = 0$ (per lo stesso motivo, $a$ agisce per primo e dà zero).
+\end{itemize}
+Sopravvivono solo due termini dell'espansione. L'azione produce quindi una combinazione lineare di stati:
+\begin{equation}
+(a + a^\dagger)^2 |0\rangle = (a^\dagger)^2 |0\rangle + a a^\dagger |0\rangle
+\end{equation}
+Ricordando l'azione standard degli operatori:
+\begin{align}
+a^\dagger |0\rangle &= \sqrt{1} |1\rangle \implies (a^\dagger)^2 |0\rangle = a^\dagger |1\rangle = \sqrt{2} |2\rangle \
+a a^\dagger |0\rangle &= a \left( \sqrt{1} |1\rangle \right) = \sqrt{1} |0\rangle = |0\rangle
+\end{align}
+Quindi otteniamo:
+\begin{equation}
+(a + a^\dagger)^2 |0\rangle = \sqrt{2}|2\rangle + |0\rangle
+\end{equation}
+
+Per ricavare il valore atteso della potenza quarta $\langle 0 \vert{} (a + a^\dagger)^4 \vert{} 0 \rangle$, possiamo sfruttare la completezza e spezzare il calcolo come il modulo quadro del vettore appena calcolato:
+\begin{equation}
+\langle 0 | (a + a^\dagger)^4 | 0 \rangle = \Big\lVert (a + a^\dagger)^2 |0\rangle \Big\rVert^2 = \Big\lVert \sqrt{2}|2\rangle + |0\rangle \Big\rVert^2
+\end{equation}
+Sfruttando l'ortonormalità degli stati, il calcolo della norma è immediato (somma dei quadrati dei coefficienti):
+\begin{equation}
+\langle 0 | (a + a^\dagger)^4 | 0 \rangle = (\sqrt{2})^2 + (1)^2 = 2 + 1 = 3
+\end{equation}
+
+\section{Energia del Ground State al Primo Ordine}
+
+Utilizzando il risultato appena trovato, possiamo calcolare la correzione al primo ordine per l'energia dello stato fondamentale. Reinserendo i fattori e le costanti dimensionali estratti in precedenza, l'elemento di matrice completo fornisce:
+\begin{equation}
+E_0^{(1)} = \langle 0 | H_1 | 0 \rangle = \frac{3}{4} \hbar \omega , \bar{\lambda}
+\end{equation}
+
+Se vogliamo scrivere l'energia totale del ground state $E_0$ limitandoci al primo ordine in funzione del parametro $\bar{\lambda}$, avremo l'energia imperturbata $E_0^{(0)}$ più questa correzione:
+\begin{equation}
+E_0(\bar{\lambda}) \approx E_0^{(0)} + \bar{\lambda} E_0^{(1)} = \frac{1}{2} \hbar \omega + \frac{3}{4} \bar{\lambda} \hbar \omega
+\end{equation}
+
+Anche senza procedere oltre, chi ha esperienza con il calcolo perturbativo può già intuire un potenziale campanello d'allarme guardando questo risultato. Il coefficiente moltiplicativo della correzione ($3/4 = 0.75$) è maggiore del termine imperturbato ($1/2 = 0.5$). Questo significa che, anche per valori non eccessivamente grandi del parametro di accoppiamento, la correzione indotta dal termine anarmonico $x^4$ diventerà molto rapidamente "pesante" e paragonabile all'energia di base, rischiando di far saltare il raggio di convergenza della serie.
+
+\section{Correzione dell'Energia al Secondo Ordine}
+
+Spingiamoci ora al calcolo del \textbf{secondo ordine}. La formula generale della teoria perturbativa per la correzione dell'energia dello stato fondamentale è:
+\begin{equation}
+E_0^{(2)} = \sum_{k \neq 0} \frac{\big| \langle k^{(0)} | H_1 | 0^{(0)} \rangle \big|^2}{E_0^{(0)} - E_k^{(0)}}
+\end{equation}
+
+Il punto nodale del problema consiste nel trovare gli elementi di matrice $\langle k^{(0)} \vert{} H_1 \vert{} 0^{(0)} \rangle$.
+In linea di principio, la sommatoria si estende a tutti gli infiniti stati eccitati $k$ dell'oscillatore armonico ($k=1, 2, 3, \dots, \infty$). Tuttavia, nella pratica dei calcoli quantistici con perturbazioni polinomiali, \textbf{la stragrande maggioranza di questi elementi di matrice è identicamente nulla} a causa delle \textit{regole di selezione} indotte dalla forma specifica dell'operatore.
+
+\subsection{Regole di Selezione per $x^4$}
+Quando andiamo ad applicare l'operatore $H_1 \propto x^4 \propto (a + a^\dagger)^4$ sullo stato fondamentale $\vert{}0\rangle$, ogni termine dello sviluppo agirà creando e distruggendo quanti di eccitazione.
+Poiché l'esponente massimo dell'operatore di creazione $a^\dagger$ in questo polinomio è 4, \textbf{partendo dal ground state possiamo "saltare" al massimo fino al livello $k=4$}. Applicando l'operatore, non vi è modo matematico di generare una sovrapposizione con livelli superiori. Di conseguenza, tutti gli elementi di matrice con $k > 4$ faranno rigorosamente zero.
+
+Inoltre, poiché l'operatore $(a+a^\dagger)^4$ contiene sempre un numero pari (o nullo) di scarti tra operatori di creazione e distruzione (es. termini tipo $(a^\dagger)^4$, $(a^\dagger)^2 a^2$, ecc.), esso connetterà lo stato $\vert{}0\rangle$ \textbf{esclusivamente a stati con parità concorde}, ovvero gli stati con $k$ pari ($k = 0, 2, 4$).
+I termini con $k$ dispari non generano sovrapposizione, quindi gli elementi di matrice per $k=1$ e $k=3$ saranno nulli.
+
+Il termine $k=0$ è escluso a priori dal denominatore della sommatoria della teoria perturbativa. Pertanto, l'infinita sommatoria sui livelli $k$ \textbf{si riduce a soli due termini non nulli: quelli per gli stati $k=2$ e $k=4$}.
+
+\subsection{Calcolo degli Elementi di Matrice Non Nulli}
+Dobbiamo quindi valutare i due elementi di matrice $\langle 4 \vert{} H_1 \vert{} 0 \rangle$ e $\langle 2 \vert{} H_1 \vert{} 0 \rangle$.
+L'operatore, con le sue costanti formali, lo scriveremo come:
+\begin{equation}
+H_1 = \bar{\lambda} \frac{\hbar \omega}{4} (a + a^\dagger)^4
+\end{equation}
+
+\textbf{1) Elemento di matrice per $k=4$:}
+Per arrivare dallo stato $\vert{}0\rangle$ allo stato $\vert{}4\rangle$, l'unica combinazione possibile all'interno dell'operatore $(a + a^\dagger)^4$ è quella che applica per 4 volte consecutive l'operatore di creazione (il termine $(a^\dagger)^4$).
+L'azione iterativa di $a^\dagger$ genera i classici coefficienti con le radici (radice di 1, radice di 2...):
+\begin{equation}
+(a^\dagger)^4 |0\rangle = \sqrt{1 \cdot 2 \cdot 3 \cdot 4} |4\rangle = \sqrt{4!} |4\rangle = \sqrt{24} |4\rangle = 2\sqrt{6} |4\rangle
+\end{equation}
+Moltiplicando a sinistra per il bra $\langle 4 \vert{}$, il prodotto interno restituisce 1. L'elemento di matrice vale quindi:
+\begin{equation}
+\langle 4 | H_1 | 0 \rangle = \bar{\lambda} \frac{\hbar \omega}{4} \cdot \sqrt{24} = \bar{\lambda} \frac{\hbar \omega}{4} \cdot 2\sqrt{6} = \bar{\lambda} \frac{\hbar \omega \sqrt{6}}{2}
+\end{equation}
+
+\textbf{2) Elemento di matrice per $k=2$:}
+Il calcolo per arrivare allo stato $\vert{}2\rangle$ richiede di individuare nello sviluppo di $(a+a^\dagger)^4$ tutti i termini il cui bilancio netto sia l'aggiunta di due quanti di eccitazione (ad esempio combinazioni con tre operatori $a^\dagger$ e un operatore $a$).
+Lasciando allo studente i passaggi algebrici espliciti per esercizio sulle regole di commutazione, e sommando i contributi dei vari termini ammessi, il risultato del calcolo è:
+\begin{equation}
+\langle 2 | H_1 | 0 \rangle = \bar{\lambda} \frac{3\hbar \omega \sqrt{2}}{2}
+\end{equation}
+
+\subsection{Sostituzione nella Formula del Secondo Ordine}
+Procediamo a inserire questi due elementi di matrice e le relative differenze energetiche nella formula per $E_0^{(2)}$ (ricordando che i denominatori sono $E_0^{(0)} - E_4^{(0)} = -4\hbar\omega$ e $E_0^{(0)} - E_2^{(0)} = -2\hbar\omega$):
+
+\begin{equation}
+E_0^{(2)} = \frac{\big| \bar{\lambda} \frac{\hbar \omega \sqrt{6}}{2} \big|^2}{-4\hbar\omega} + \frac{\big| \bar{\lambda} \frac{3\hbar \omega \sqrt{2}}{2} \big|^2}{-2\hbar\omega}
+\end{equation}
+
+Sviluppiamo i quadrati a numeratore:
+\begin{equation}
+E_0^{(2)} = \bar{\lambda}^2 \frac{\frac{6}{4} (\hbar \omega)^2}{-4\hbar\omega} + \bar{\lambda}^2 \frac{\frac{18}{4} (\hbar \omega)^2}{-2\hbar\omega}
+\end{equation}
+
+Semplifichiamo le espressioni, elidendo un fattore $\hbar\omega$:
+\begin{equation}
+E_0^{(2)} = - \bar{\lambda}^2 \frac{6}{16} \hbar\omega - \bar{\lambda}^2 \frac{18}{8} \hbar\omega = - \bar{\lambda}^2 \hbar\omega \left( \frac{3}{8} + \frac{9}{4} \right)
+\end{equation}
+
+Risolviamo la somma tra frazioni portando a minimo comune multiplo ($8$):
+\begin{equation}
+E_0^{(2)} = - \bar{\lambda}^2 \hbar\omega \left( \frac{3 + 18}{8} \right) = - \frac{21}{8} \bar{\lambda}^2 \hbar\omega
+\end{equation}
+
+Come ampiamente predetto dalla teoria generale del principio variazionale, la correzione al secondo ordine risulta essere strettamente e inequivocabilmente \textbf{negativa}.
+
+\section{Serie Asintotiche e Limiti di Precisione}
+
+Mettiamo ora assieme i risultati ottenuti, esplicitando la formula dell'energia del ground state arrestata al secondo ordine perturbativo. Mettendo in evidenza il termine dimensionale $\hbar \omega$ comune a tutti gli addendi:
+
+\begin{equation}
+E_0(\bar{\lambda}) \approx \hbar \omega \left( \frac{1}{2} + \frac{3}{4} \bar{\lambda} - \frac{21}{8} \bar{\lambda}^2 \right)
+\end{equation}
+
+Questo problema della perturbazione $x^4$ sull'oscillatore armonico è stato studiato in profondità nella storia della fisica matematica. Numerosi sforzi teorici e computazionali hanno spinto il calcolo perturbativo ben oltre i primi ordini (addirittura oltre il sessantesimo ordine), nel tentativo di ottenere una formula sempre più precisa. È noto, ad esempio, che i termini successivi della serie sono:
+\begin{equation}
++ \frac{333}{32} \bar{\lambda}^3 - \frac{30885}{512} \bar{\lambda}^4 + \dots
+\end{equation}
+*(L'ultimo coefficiente fornito nella trascrizione originale della lezione era un valore approssimato per uso didattico; qui riportiamo il coefficiente esatto dalla letteratura di settore per coerenza analitica)*.
+
+Scrivendo la serie estesa notiamo un comportamento preoccupante:
+\begin{equation}
+E_0 \approx \hbar \omega \left[ \frac{1}{2} + 0.75 \bar{\lambda} - 2.625 \bar{\lambda}^2 + 10.406 \bar{\lambda}^3 - 60.322 \bar{\lambda}^4 \dots \right]
+\end{equation}
+
+Notiamo che i coefficienti numerici della serie aumentano rapidissimamente (crescono come il fattoriale dell'ordine perturbativo).
+Anche se scegliamo un valore del parametro $\bar{\lambda}$ piccolo, i coefficienti davanti a $\bar{\lambda}^n$ diventeranno inevitabilmente così immensi che il prodotto complessivo cesserà di diminuire, per iniziare invece a crescere indefinitamente. Questo comportamento patologico definisce una \textbf{serie asintotica} (o serie divergente).
+
+\subsection{L'accuratezza Massima (Teorema del Limite)}
+A causa di questa crescita fattoriale dei coefficienti, la serie non converge mai nel senso matematico stretto di "infiniti termini". La teoria perturbativa in questi scenari restituisce una serie asintotica che garantisce buoni risultati fisici a patto di \textbf{troncare} lo sviluppo a un numero di ordini dipendente dal valore specifico del parametro $\bar{\lambda}$.
+
+Per un fissato valore di $\bar{\lambda}$, se si calcolano le correzioni di grado superiore, si noterà che per un po' le correzioni diventano man mano più piccole, migliorando la precisione. \textbf{Tuttavia, raggiunto un certo ordine critico, le correzioni iniziano inesorabilmente a gonfiarsi}. Se si includessero ulteriori termini oltre a quel punto, l'approssimazione smetterebbe di convergere e il risultato "esploderebbe", allontanandosi drammaticamente dal valore vero.
+Di conseguenza, esiste un \textbf{limite intrinseco all'accuratezza (precisione) raggiungibile}: per ogni $\bar{\lambda}$, la stima migliore ottenibile si ha troncando la serie esattamente al termine prima che le correzioni riprendano a crescere; andare oltre produrrà unicamente errori sistematici. Non è fisicamente e matematicamente possibile estrarre una precisione superiore da questo metodo per tale sistema.
+\textit{(In ambito applicativo, comportamenti similmente asintotici si riscontrano ad esempio nell'approssimazione di Stirling per il calcolo dei fattoriali grandi, dove l'accuratezza dipende dalla calibrazione dei termini di troncamento, senza poter raggiungere la perfetta convergenza asintotica per via dello stesso vizio strutturale).}
+
+\section{Formalismo di Proiezione in Teoria delle Perturbazioni}
+
+\subsection{Definizione degli Operatori di Proiezione $P$ e $Q$}
+Per approfondire la struttura algebrica della teoria perturbativa, è estremamente utile introdurre il formalismo degli \textbf{operatori di proiezione}.
+
+Consideriamo uno specifico stato imperturbato $\vert{}n^{(0)}\rangle$. Definiamo un primo operatore $P$ come il prodotto esterno (o proiettore) lungo la direzione di tale stato:
+\begin{equation}
+P \equiv |n^{(0)}\rangle \langle n^{(0)}|
+\end{equation}
+Come ogni proiettore quantistico, l'azione di $P$ su un generico stato $\vert{}\psi\rangle$ del dominio fornisce la componente (la proiezione) di $\vert{}\psi\rangle$ lungo la direzione $\vert{}n^{(0)}\rangle$:
+\begin{equation}
+P|\psi\rangle = |n^{(0)}\rangle \langle n^{(0)} | \psi\rangle = c_n |n^{(0)}\rangle
+\end{equation}
+dove $c_n = \langle n^{(0)} \vert{} \psi\rangle$ è il coefficiente di sovrapposizione.
+Inoltre, l'operatore gode della proprietà di \textit{idempotenza}, tipica di tutti i proiettori: applicare due o più volte l'operatore restituisce sempre lo stesso risultato della prima applicazione. In termini operatoriali:
+\begin{equation}
+P^2 = P
+\end{equation}
+
+In maniera complementare, possiamo definire un secondo operatore $Q$ che proietta nello spazio ortogonale allo stato $\vert{}n^{(0)}\rangle$. Definiamo $Q$ come la somma dei proiettori lungo tutti gli altri stati della base:
+\begin{equation}
+Q \equiv \sum_{k \neq n} |k^{(0)}\rangle \langle k^{(0)}|
+\end{equation}
+L'operatore $Q$ prende uno stato e restituisce la parte di quel vettore che vive nel sottospazio ortogonale ad $\vert{}n^{(0)}\rangle$.
+Sfruttando la risoluzione (o relazione di chiusura) dell'identità per una base completa, ovvero $\sum_{\text{all } k} \vert{}k^{(0)}\rangle \langle k^{(0)}\vert{} = \mathbb{I}$, notiamo subito che:
+\begin{equation}
+P + Q = \mathbb{I}
+\end{equation}
+
+Se applichiamo in sequenza i due proiettori, otteniamo l'operatore nullo:
+\begin{equation}
+P Q = 0 \quad \text{e} \quad Q P = 0
+\end{equation}
+Fisicamente questo è ovvio: $Q$ prende uno stato e ne elimina totalmente la componente lungo $\vert{}n^{(0)}\rangle$. Se successivamente agiamo con $P$ (che cerca proprio la componente lungo $\vert{}n^{(0)}\rangle$) sul risultato precedente, non troveremo nulla e otterremo $0$. Analogamente, $P$ isola solo la componente $\vert{}n^{(0)}\rangle$, che $Q$ poi annichilisce in quanto proietta nello spazio ortogonale.
+
+\section{Risoluzione dell'Equazione al Primo Ordine tramite Proiettori}
+
+Riprendiamo l'equazione base della teoria perturbativa al primo ordine (già ricavata in precedenza):
+\begin{equation}
+\left( E_n^{(0)} - H_0 \right) |n^{(1)}\rangle = \left( H_1 - E_n^{(1)} \right) |n^{(0)}\rangle
+\end{equation}
+
+L'idea è di \textbf{applicare l'operatore $Q$} sia a sinistra che a destra di questa equazione, e sfruttare le sue proprietà per ricavare formalmente lo stato $\vert{}n^{(1)}\rangle$.
+
+Applichiamo $Q$ al membro di destra:
+\begin{equation}
+Q \left( H_1 - E_n^{(1)} \right) |n^{(0)}\rangle = Q H_1 |n^{(0)}\rangle - Q E_n^{(1)} |n^{(0)}\rangle
+\end{equation}
+Poiché $E_n^{(1)}$ è solo un numero (uno scalare), l'azione di $Q$ su quel termine agisce direttamente sullo stato: $E_n^{(1)} Q \vert{}n^{(0)}\rangle$. Ma $Q$ proietta ortogonalmente rispetto a $\vert{}n^{(0)}\rangle$, quindi per definizione $Q \vert{}n^{(0)}\rangle = 0$. Il secondo termine del membro di destra svanisce.
+L'equazione, dopo l'applicazione di $Q$, diventa:
+\begin{equation}
+Q \left( E_n^{(0)} - H_0 \right) |n^{(1)}\rangle = Q H_1 |n^{(0)}\rangle
+\end{equation}
+
+\subsection{Inversione dell'Operatore e Protezione (Il Propagatore)}
+Risolviamo l'equazione per ricavare lo stato $\vert{}n^{(1)}\rangle$, portando formalmente a denominatore (ovvero invertendo) l'operatore di sinistra:
+\begin{equation}
+|n^{(1)}\rangle = \frac{1}{E_n^{(0)} - H_0} Q H_1 |n^{(0)}\rangle
+\end{equation}
+
+Qui interviene una sottigliezza matematica fondamentale. L'operatore inverso $(E_n^{(0)} - H_0)^{-1}$ presenta un problema intrinseco (una "divergenza") qualora venisse applicato direttamente allo stato $\vert{}n^{(0)}\rangle$. In tal caso, il denominatore diventerebbe l'autovalore esatto $E_n^{(0)}$, per cui si avrebbe $E_n^{(0)} - E_n^{(0)} = 0$, e l'operatore divergerebbe (restituirebbe $1/0$).
+
+Tuttavia, noi sappiamo che la nostra equazione a destra possiede l'operatore $Q$, che fa in modo che \textbf{tutto ciò su cui andiamo ad applicare l'operatore inverso si trovi già e sempre all'interno dello spazio ortogonale} a $\vert{}n^{(0)}\rangle$. In quel sottospazio, l'operatore $H_0$ restituirà autovalori $E_k^{(0)} \neq E_n^{(0)}$, e il denominatore non si annullerà mai.
+Per rendere la scrittura matematicamente più "sicura" (protetta) e per evidenziare che ci stiamo muovendo unicamente nel sottospazio ortogonale, è consuetudine inserire un proiettore $Q$ addizionale che "avvolga" o sostituisca formalmente lo stato, scrivendo:
+\begin{equation}
+|n^{(1)}\rangle = Q \frac{1}{E_n^{(0)} - H_0} Q H_1 |n^{(0)}\rangle
+\end{equation}
+Questo lo possiamo fare liberamente perché la correzione di primo ordine, come stabilito dalla nostra convenzione di normalizzazione, vive \textit{interamente} nello spazio ortogonale allo stato iniziale, per cui $Q\vert{}n^{(1)}\rangle = \vert{}n^{(1)}\rangle$. Inserire $Q$ davanti non altera l'equazione.
+
+Definiamo quindi un nuovo operatore $G$, chiamato \textbf{propagatore} (o in certi ambiti operatori di Green per l'energia):
+\begin{equation}
+G \equiv Q \frac{1}{E_n^{(0)} - H_0} Q
+\end{equation}
+La correzione al primo ordine assume così una forma notevolmente compatta ed elegante:
+\begin{equation}
+|n^{(1)}\rangle = G H_1 |n^{(0)}\rangle
+\end{equation}
+
+\textit{Nota a margine:} L'operatore $(E - H_0)^{-1}$ è la base teorica del cosiddetto \textbf{propagatore della particella libera}, uno strumento matematico per risolvere equazioni differenziali lineari passando da un problema integro-differenziale al calcolo delle cosiddette funzioni di Green. Non approfondiremo ora questa struttura matematica complessa, ma è utile riconoscere l'origine formale dell'operatore $G$.
+
+\section{Dimostrazione dell'Equivalenza delle Formule}
+
+La formula appena ricavata tramite il proiettore ($\vert{}n^{(1)}\rangle = G H_1 \vert{}n^{(0)}\rangle$) risulta elegante per i teorici, ma può apparire astratta o "insoddisfacente" dal punto di vista operativo. Vogliamo dimostrare che essa \textbf{coincide esattamente} con la formula esplicita (con la sommatoria) che abbiamo ricavato nella lezione precedente.
+
+Il trucco standard in meccanica quantistica per passare da una forma astratta a una esplicita è inserire la relazione di risoluzione dell'identità: $\sum_k \vert{}k^{(0)}\rangle \langle k^{(0)}\vert{} = \mathbb{I}$.
+In questo caso, siccome lavoriamo nello spazio ortogonale a $n$, sfrutteremo direttamente la definizione esplicita dell'operatore $Q$:
+\begin{equation}
+Q = \sum_{k \neq n} |k^{(0)}\rangle \langle k^{(0)}|
+\end{equation}
+
+Inseriamo questa definizione all'interno della formula con il propagatore:
+\begin{equation}
+|n^{(1)}\rangle = \left( \sum_{k \neq n} |k^{(0)}\rangle \langle k^{(0)}| \right) \frac{1}{E_n^{(0)} - H_0} Q H_1 |n^{(0)}\rangle
+\end{equation}
+
+Portiamo l'operatore $(E_n^{(0)} - H_0)^{-1}$ a contatto con il bra $\langle k^{(0)}\vert{}$. Essendo $H_0$ hermitiano, esso agisce a sinistra su $\langle k^{(0)}\vert{}$ estraendo l'autovalore $E_k^{(0)}$. L'operatore frazionario si trasforma quindi in un semplice numero scalare:
+\begin{equation}
+\langle k^{(0)} | \frac{1}{E_n^{(0)} - H_0} = \frac{1}{E_n^{(0)} - E_k^{(0)}} \langle k^{(0)} |
+\end{equation}
+
+Sostituendo questo termine numerico nell'espressione, l'equazione diventa:
+\begin{equation}
+|n^{(1)}\rangle = \sum_{k \neq n} \frac{1}{E_n^{(0)} - E_k^{(0)}} |k^{(0)}\rangle \langle k^{(0)} | Q H_1 |n^{(0)}\rangle
+\end{equation}
+
+A questo punto, dobbiamo valutare l'azione di $Q$ all'interno del prodotto scalare $\langle k^{(0)} \vert{} Q$. Sappiamo che $Q$ proietta sullo spazio ortogonale a $n$. Siccome la nostra sommatoria è vincolata a indici $k \neq n$, ogni stato $k$ considerato \textbf{appartiene già} allo spazio ortogonale. Quindi, l'azione di $Q$ sul bra $\langle k^{(0)}\vert{}$ restituisce semplicemente il bra stesso ($\langle k^{(0)} \vert{} Q = \langle k^{(0)} \vert{}$). L'operatore $Q$ può dunque essere rimosso o assorbito senza alterare il risultato.
+
+Effettuando quest'ultimo passaggio, l'equazione diventa:
+\begin{equation}
+|n^{(1)}\rangle = \sum_{k \neq n} \frac{\langle k^{(0)} | H_1 | n^{(0)} \rangle}{E_n^{(0)} - E_k^{(0)}} |k^{(0)}\rangle
+\end{equation}
+Questo risultato, ricavato esplicitamente dal formalismo dei proiettori, è \textbf{perfettamente identico} alla formula nota della correzione al primo ordine che abbiamo dimostrato all'inizio del corso. Le due impostazioni algebriche (proiezioni e sommatorie su coefficienti) sono del tutto sovrapponibili e descrivono la medesima struttura logico-matematica.
+
+\subsection{Recupero dell'Energia al Primo Ordine tramite $P$}
+Un'altra conferma della coerenza del formalismo a operatori si ha guardando al membro di sinistra dell'equazione base: $\left( E_n^{(0)} - H_0 \right) \vert{}n^{(1)}\rangle$.
+
+Osserviamo che il vettore risultante da questa operazione è \textbf{ortogonale} allo stato imperturbato $\vert{}n^{(0)}\rangle$. Verifichiamolo calcolando il prodotto scalare:
+\begin{equation}
+\langle n^{(0)} | \left( E_n^{(0)} - H_0 \right) | n^{(1)} \rangle
+\end{equation}
+Facendo agire $H_0$ a sinistra sul bra, otteniamo l'autovalore $E_n^{(0)}$, per cui la parentesi diventa $(E_n^{(0)} - E_n^{(0)}) = 0$. Il prodotto scalare è nullo.
+
+Essendo il vettore ortogonale a $\vert{}n^{(0)}\rangle$, se andiamo ad applicare il proiettore $P$ (che proietta proprio lungo $\vert{}n^{(0)}\rangle$) all'intera equazione base, il membro di sinistra si annulla identicamente ($P \cdot (\dots) = 0$).
+
+Ciò significa che applicare l'operatore $P$ a tutta l'equazione:
+\begin{equation}
+P \left[ \left( E_n^{(0)} - H_0 \right) |n^{(1)}\rangle \right] = P \left[ \left( H_1 - E_n^{(1)} \right) |n^{(0)}\rangle \right]
+\end{equation}
+comporta che il termine a sinistra sparisca, lasciando:
+\begin{equation}
+0 = P \left( H_1 - E_n^{(1)} \right) |n^{(0)}\rangle
+\end{equation}
+Esplicitando l'azione di $P$ (cioè moltiplicando scalarmente per il bra $\langle n^{(0)}\vert{}$), si ricava in un solo passaggio:
+\begin{equation}
+\langle n^{(0)} | H_1 - E_n^{(1)} |n^{(0)}\rangle = 0 \implies E_n^{(1)} = \langle n^{(0)} | H_1 |n^{(0)}\rangle
+\end{equation}
+Che non è altro che la classica formula della correzione dell'energia al primo ordine che avevamo dedotto originariamente proiettando direttamente l'equazione (equivalente all'imporre $m=n$ nello sviluppo elementare della teoria).
+
+\section{Il Significato di Proiettare l'Equazione di Base}
+
+Per recuperare la connessione con l'impostazione pratica originaria della teoria perturbativa (basata sul calcolo dei coefficienti di Fourier della proiezione), analizziamo ulteriormente l'equazione del primo ordine:
+\begin{equation}
+P \left[ \left( E_n^{(0)} - H_0 \right) |n^{(1)}\rangle \right] = P \left[ \left( H_1 - E_n^{(1)} \right) |n^{(0)}\rangle \right]
+\end{equation}
+
+Andiamo ad applicare il proiettore $P = \vert{}n^{(0)}\rangle \langle n^{(0)}\vert{}$ esplicitamente al membro di destra dell'equazione:
+\begin{equation}
+P \left( H_1 - E_n^{(1)} \right) |n^{(0)}\rangle = |n^{(0)}\rangle \langle n^{(0)} | \left( H_1 - E_n^{(1)} \right) |n^{(0)}\rangle
+\end{equation}
+
+Spezzando il termine per linearità e agendo con i bra e i ket:
+\begin{equation}
+= |n^{(0)}\rangle \left[ \langle n^{(0)} | H_1 | n^{(0)}\rangle - E_n^{(1)} \langle n^{(0)} | n^{(0)}\rangle \right]
+\end{equation}
+Essendo lo stato imperturbato normalizzato a uno ($\langle n^{(0)} \vert{} n^{(0)}\rangle = 1$), la parentesi quadra diventa:
+\begin{equation}
+= |n^{(0)}\rangle \left[ \langle n^{(0)} | H_1 | n^{(0)}\rangle - E_n^{(1)} \right]
+\end{equation}
+
+Come abbiamo dimostrato in precedenza, l'intera equazione proiettata con $P$ deve restituire zero (essendo il membro di sinistra nullo). Quindi:
+\begin{equation}
+|n^{(0)}\rangle \left[ \langle n^{(0)} | H_1 | n^{(0)}\rangle - E_n^{(1)} \right] = 0
+\end{equation}
+L'unica soluzione affinché questo vettore sia nullo, visto che $\vert{}n^{(0)}\rangle \neq 0$, è che il termine tra parentesi quadre si annulli:
+\begin{equation}
+E_n^{(1)} = \langle n^{(0)} | H_1 | n^{(0)}\rangle
+\end{equation}
+Si riottiene, per via del tutto generale e formale, la medesima espressione per la correzione energetica al primo ordine dedotta originariamente.
+
+L'impostazione con gli operatori di proiezione $P$ e $Q$ risulta non solo coerente, ma operativamente più elegante per dedurre risultati generali. Evita la proliferazione di indici liberi (i vari $m$ e $k$) e l'uso continuo di sommatorie, racchiudendo le proprietà vettoriali negli operatori stessi.
+
+\section{Estensione del Formalismo agli Ordini Superiori}
+
+La forza metodologica di questo approccio (e dell'introduzione del propagatore protetto $G$) emerge appieno quando si decide di spingere lo sviluppo perturbativo agli ordini superiori.
+
+Le relazioni ricavate tramite l'operatore $Q$ si generalizzano in modo naturale: abbiamo appurato che la correzione dello stato all'ordine generico $r$ è legata all'azione di $G$ sulla perturbazione valutata all'ordine precedente.
+
+\subsection{Correzione dell'Energia e dello Stato al Secondo Ordine}
+
+Ripartiamo dall'equazione della teoria perturbativa valutata analiticamente al \textbf{secondo ordine} in potenze di $\lambda$. Sviluppando l'equazione di Schrödinger originaria, raccogliendo i termini dello stesso grado, e portando a sinistra i termini proporzionali a $\vert{}n^{(2)}\rangle$:
+
+\begin{equation}
+(E_n^{(0)} - H_0) |n^{(2)}\rangle = (H_1 - E_n^{(1)}) |n^{(1)}\rangle - E_n^{(2)} |n^{(0)}\rangle
+\end{equation}
+
+Per trovare la soluzione formale per lo stato $\vert{}n^{(2)}\rangle$, la procedura è perfettamente analoga a quella vista per il primo ordine: applichiamo l'operatore di proiezione ortogonale $Q$ all'intera equazione.
+
+\begin{equation}
+Q (E_n^{(0)} - H_0) |n^{(2)}\rangle = Q (H_1 - E_n^{(1)}) |n^{(1)}\rangle - Q E_n^{(2)} |n^{(0)}\rangle
+\end{equation}
+
+Osserviamo subito il secondo termine a destra: l'energia $E_n^{(2)}$ è uno scalare, quindi l'azione di $Q$ avviene direttamente sullo stato imperturbato. Ma per definizione $Q \vert{}n^{(0)}\rangle = 0$. Il termine si annulla.
+
+Rimaniamo quindi con:
+\begin{equation}
+Q (E_n^{(0)} - H_0) |n^{(2)}\rangle = Q (H_1 - E_n^{(1)}) |n^{(1)}\rangle
+\end{equation}
+
+Esattamente come fatto per lo stato al primo ordine, andiamo a isolare (formalmente invertire) $\vert{}n^{(2)}\rangle$ e ad avvolgere l'operatore $(E_n^{(0)} - H_0)^{-1}$ con due proiettori $Q$ per "proteggere" dalle divergenze:
+
+\begin{equation}
+|n^{(2)}\rangle = Q \frac{1}{E_n^{(0)} - H_0} Q (H_1 - E_n^{(1)}) |n^{(1)}\rangle
+\end{equation}
+
+Riconoscendo in questa espressione la definizione formale del propagatore $G$, otteniamo l'equazione operativa compatta:
+\begin{equation}
+|n^{(2)}\rangle = G (H_1 - E_n^{(1)}) |n^{(1)}\rangle
+\end{equation}
+Abbiamo così la correzione di stato al secondo ordine scritta esclusivamente in termini di operatori e grandezze di ordine inferiore già calcolate ($H_1, E_n^{(1)}$ e $\vert{}n^{(1)}\rangle$).
+
+\textit{Approfondimento formale sull'applicazione di Q:} Uno studente attento potrebbe osservare che, mentre nel passaggio al primo ordine l'inserimento di $Q$ davanti a $\vert{}n^{(1)}\rangle$ era del tutto lecito in virtù del fatto che avevamo definito $\vert{}n^{(1)}\rangle$ come ortogonale a $\vert{}n^{(0)}\rangle$ ($Q\vert{}n^{(1)}\rangle = \vert{}n^{(1)}\rangle$), \textbf{al secondo ordine non è in generale garantito che $\vert{}n^{(2)}\rangle$ viva unicamente nello spazio ortogonale}. Se si procedesse senza la nostra convenzione di normalizzazione (che impone l'ortogonalità a tutti gli ordini), questa eguaglianza non sarebbe più stringente e l'operatore di proiezione non lascerebbe immutato lo stato $\vert{}n^{(2)}\rangle$. Pertanto, questo passaggio dipende in modo cruciale dalla scelta di normalizzazione $\langle n^{(0)} \vert{} n^{(r)} \rangle = 0$ (per ogni $r>0$) adottata all'inizio del corso.
+
+\subsection{Sviluppo fino al Terzo Ordine}
+
+Per dimostrare la ricorsività formale del metodo, ci spingiamo fino all'energia del \textbf{terzo ordine}, $E_n^{(3)}$.
+
+La proprietà generale dedotta nelle lezioni precedenti stabilisce che per calcolare l'energia all'ordine $r$ basta proiettare sul bra $\langle n^{(0)} \vert{}$ l'operatore di interazione applicato allo stato calcolato all'ordine $r-1$. Nel nostro caso:
+\begin{equation}
+E_n^{(3)} = \langle n^{(0)} | H_1 | n^{(2)} \rangle
+\end{equation}
+\textit{(Nota: per comodità notazionale in passaggi puramente operatoriali, a volte nei testi si omettono i bra e i ket e si usa una notazione per prodotto di matrice, come $n_0^\dagger H_1 n_2$ o simili. Qui manterremo il formalismo esplicito di Dirac).}
+
+Possiamo ora sostituire in questa equazione la forma analitica dello stato $\vert{}n^{(2)}\rangle$ appena ricavata tramite il propagatore:
+\begin{equation}
+E_n^{(3)} = \langle n^{(0)} | H_1 \left[ G (H_1 - E_n^{(1)}) |n^{(1)}\rangle \right]
+\end{equation}
+
+Per linearità, scomponiamo la parentesi tonda:
+\begin{equation}
+E_n^{(3)} = \langle n^{(0)} | H_1 G H_1 |n^{(1)}\rangle - \langle n^{(0)} | H_1 G E_n^{(1)} |n^{(1)}\rangle
+\end{equation}
+Siccome l'energia $E_n^{(1)}$ è uno scalare, può essere estratto:
+\begin{equation}
+E_n^{(3)} = \langle n^{(0)} | H_1 G H_1 |n^{(1)}\rangle - E_n^{(1)} \langle n^{(0)} | H_1 G |n^{(1)}\rangle
+\end{equation}
+
+Eseguendo un'ulteriore sostituzione iterativa, ricordando che $\vert{}n^{(1)}\rangle$ stesso può essere riscritto in termini del propagatore ($\vert{}n^{(1)}\rangle = G H_1 \vert{}n^{(0)}\rangle$), potremmo esprimere l'intera correzione di terzo ordine puramente in funzione dello stato originario $\vert{}n^{(0)}\rangle$, dell'operatore $G$ e dell'interazione $H_1$, senza alcun riferimento esplicito alle correzioni intermedie degli stati.
+
+\section{La Teoria delle Perturbazioni nel Caso Degenere}
+
+Nel formalismo sviluppato finora abbiamo sempre assunto che i livelli energetici del sistema imperturbato fossero non degeneri. Ora affronteremo la questione più delicata della teoria perturbativa: il caso in cui il sistema presenti \textbf{livelli degeneri}.
+
+\subsection{Il Problema della Degenerezza}
+
+Quando analizziamo un livello degenere, ci troviamo di fronte a una situazione in cui a una singola energia imperturbata $E_n^{(0)}$ corrispondono \textit{diversi} autostati fisicamente distinti. Per distinguere questi stati, è necessario introdurre un ulteriore numero quantico (o indice), che chiameremo $\nu$.
+Lo stato sarà quindi indicato con $\vert{}n^{(0)}, \nu\rangle$, dove l'indice $\nu$ varia da $1$ fino a $g_n$ (essendo $g_n$ il grado di degenerazione del livello $n$).
+
+Cosa succede a questo insieme di stati degeneri quando accendiamo la perturbazione $H_1$?
+\begin{itemize}
+\item \textbf{Rimozione della degenerezza (Splitting):} Fisicamente, non dobbiamo aspettarci che tutti questi stati, pur partendo dalla stessa energia, subiscano la stessa identica correzione energetica. L'azione della perturbazione deforma gli stati in base alle loro caratteristiche spaziali e di simmetria (determinate dall'indice $\nu$).
+\item \textbf{Esempio dell'atomo di idrogeno:} Consideriamo i livelli $2s$ e $2p$ dell'atomo di idrogeno (trascurando struttura fine, ecc.). Essi possiedono la medesima energia imperturbata. Tuttavia, se applichiamo un campo elettrico esterno (effetto Stark), lo stato $2s$ (che ha una distribuzione di carica sferica) interagirà col campo in modo profondamente diverso rispetto allo stato $2p$ (che ha una forma a doppio lobo). Il campo elettrico "percepirà" la diversa geometria degli stati, inducendo correzioni energetiche differenti. Il livello originale "schiuderà" (effettuerà uno \textit{splitting}) separandosi in molteplici sotto-livelli con energie diverse.
+\end{itemize}
+
+\subsection{Fallimento della Formula Standard}
+
+Se tentassimo ingenuamente di estendere la formula della teoria perturbativa standard calcolando la correzione al primo ordine per un generico stato $\vert{}n^{(0)}, \nu\rangle$ tramite la proiezione diagonale:
+\begin{equation}
+E_{n,\nu}^{(1)} = \langle n^{(0)}, \nu | H_1 | n^{(0)}, \nu \rangle
+\end{equation}
+otterremmo effettivamente valori diversi per ciascun $\nu$, sembrando predire correttamente lo \textit{splitting}.
+
+Tuttavia, il problema matematico \textbf{insormontabile} emerge non appena proviamo a calcolare le correzioni dello stato $\vert{}n^{(1)}\rangle$ o le energie del secondo ordine. La formula che abbiamo ricavato contiene una sommatoria su tutti gli stati $k \neq n$:
+\begin{equation}
+|n^{(1)}, \nu\rangle = \sum_{k \neq n} \frac{\langle k^{(0)} | H_1 | n^{(0)}, \nu \rangle}{E_n^{(0)} - E_k^{(0)}} |k^{(0)}\rangle
+\end{equation}
+Nel caso in cui esista un altro stato $\vert{}k^{(0)}\rangle$ che appartiene allo \textit{stesso sottospazio degenere} di $n$ (ovvero un altro stato $\vert{}n^{(0)}, \mu\rangle$ con $\mu \neq \nu$), l'energia imperturbata di questo stato sarà \textbf{esattamente uguale} all'energia dello stato in esame ($E_k^{(0)} = E_n^{(0)}$).
+
+Sostituendo questi valori nel denominatore della frazione della teoria perturbativa, otteniamo:
+\begin{equation}
+E_n^{(0)} - E_k^{(0)} = 0
+\end{equation}
+Questo porta immediatamente a una divisione per zero. La correzione per lo stato (e conseguentemente per l'energia agli ordini superiori) \textbf{diverge a infinito}, rendendo le formule della teoria perturbativa non degenere totalmente inapplicabili. L'unico caso fortunato in cui la divergenza non si presenterebbe è quello in cui, per ragioni di stretta simmetria, l'elemento di matrice a numeratore si annullasse identicamente assieme al denominatore, ma ciò non avviene in generale.
+
+\section{Il Rimedio: Diagonalizzazione nel Sottospazio Degenere}
+
+Nei corsi precedenti vi è stato probabilmente detto, in forma di "ricetta" o regola operativa, che per aggirare questo problema è necessario procedere a \textbf{diagonalizzare la perturbazione $H_1$ all'interno del sottospazio degenere}.
+
+Vedremo ora nel dettaglio, con rigore matematico e tramite un esempio concreto, da dove origini esattamente questo vincolo e perché questa procedura sia l'unico modo per rimuovere la singolarità dell'equazione.
+
+\subsection{Esempio: Sistema Degenere a Due Livelli}
+
+Consideriamo, come fatto in precedenza, un "toy model" estremamente istruttivo: un sistema a due livelli. Questa volta, però, lo costruiamo in modo tale che il livello di partenza sia \textbf{degenere}.
+
+L'hamiltoniana totale in funzione del parametro $\lambda$ è $H(\lambda) = H_0 + \lambda H_1$.
+Nello spazio degli stati a due dimensioni, definiamo l'hamiltoniana imperturbata $H_0$. Per semplicità notazionale, poniamo l'energia imperturbata di entrambi gli stati pari a 1 (possiamo sempre ridefinire la scala delle energie sottraendo una costante a tutti i livelli, quindi prendere $E_1^{(0)} = 1$ e $E_2^{(0)} = 1$ senza perdita di generalità). Essendo degenere, la matrice di $H_0$ è l'identità:
+\begin{equation}
+H_0 = \begin{pmatrix} 1 & 0 \ 0 & 1 \end{pmatrix}
+\end{equation}
+Questo significa che \textit{qualunque} vettore nello spazio bidimensionale è un autostato di $H_0$ con autovalore 1.
+
+Introduciamo ora una perturbazione $\lambda H_1$. Costruiamo la perturbazione in modo tale che, rispetto alla base canonica $\binom{1}{0}$ e $\binom{0}{1}$, essa possieda solamente termini fuori diagonale. (Poniamo anche l'elemento fuori diagonale pari a 1 per massima semplicità algebrica):
+\begin{equation}
+\lambda H_1 = \lambda \begin{pmatrix} 0 & 1 \ 1 & 0 \end{pmatrix}
+\end{equation}
+
+L'hamiltoniana totale del nostro sistema bidimensionale perturbato sarà dunque:
+\begin{equation}
+H(\lambda) = \begin{pmatrix} 1 & \lambda \ \lambda & 1 \end{pmatrix}
+\end{equation}
+
+\subsection{Il Cortocircuito della Teoria Non Degenere}
+Cosa succede se proviamo ad applicare \textbf{ciecamente} la teoria delle perturbazioni non degenere a questo sistema?
+
+Calcoliamo l'energia del primo stato (corrispondente al vettore canonico $v_1 = \binom{1}{0}$) al primo ordine perturbativo:
+\begin{equation}
+E_1^{(1)} = \langle v_1 | H_1 | v_1 \rangle = \begin{pmatrix} 1 & 0 \end{pmatrix} \begin{pmatrix} 0 & 1 \ 1 & 0 \end{pmatrix} \begin{pmatrix} 1 \ 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 \end{pmatrix} \begin{pmatrix} 0 \ 1 \end{pmatrix} = 0
+\end{equation}
+La teoria standard predirebbe una correzione nulla. L'energia dello stato 1 rimarrebbe pari a $E_1^{(0)} = 1$. L'energia dello stato 2 rimarrebbe parimenti $1$. La degenerezza sembrerebbe intatta al primo ordine.
+
+Ma se tentassimo di calcolare l'energia al \textbf{secondo ordine} o lo stato al primo ordine, ci schianteremmo immediatamente contro la divergenza del denominatore. Il denominatore richiederebbe di valutare:
+\begin{equation}
+E_1^{(0)} - E_2^{(0)} = 1 - 1 = 0
+\end{equation}
+Essendo l'elemento di matrice fuori diagonale $\langle v_2 \vert{} H_1 \vert{} v_1 \rangle = 1$ diverso da zero, otterremmo:
+\begin{equation}
+E_1^{(2)} = \frac{|\langle v_2 | H_1 | v_1 \rangle|^2}{E_1^{(0)} - E_2^{(0)}} = \frac{1^2}{0} \implies \infty
+\end{equation}
+La teoria crolla su se stessa, confermando l'inapplicabilità diretta delle formule nel caso degenere. Il problema sta nella \textbf{cattiva scelta} della base imperturbata di partenza. Affronteremo la soluzione formale e il modo corretto di operare nella successiva trattazione matematica.
+
+\subsection{Verifica della Teoria Perturbativa non Adattata}
+
+Torniamo all'applicazione ceca della teoria delle perturbazioni standard usando la base mal posta. Calcoliamo la correzione al primo ordine per l'energia dello stato $\vert{}1^{(0)}\rangle$, usando la formula $E_1^{(1)} = \langle 1^{(0)} \vert{} \lambda H_1 \vert{} 1^{(0)} \rangle$:
+\begin{equation}
+E_1^{(1)} = \begin{pmatrix} 1 & 0 \end{pmatrix} \begin{pmatrix} 0 & \lambda \ \lambda & 0 \end{pmatrix} \begin{pmatrix} 1 \ 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 \end{pmatrix} \begin{pmatrix} 0 \ \lambda \end{pmatrix} = 0
+\end{equation}
+
+Ripetiamo il calcolo per lo stato $\vert{}2^{(0)}\rangle$:
+\begin{equation}
+E_2^{(1)} = \langle 2^{(0)} | \lambda H_1 | 2^{(0)} \rangle = \begin{pmatrix} 0 & 1 \end{pmatrix} \begin{pmatrix} 0 & \lambda \ \lambda & 0 \end{pmatrix} \begin{pmatrix} 0 \ 1 \end{pmatrix} = \begin{pmatrix} 0 & 1 \end{pmatrix} \begin{pmatrix} \lambda \ 0 \end{pmatrix} = 0
+\end{equation}
+
+Se ci limitassimo a questo risultato, giungeremmo alla conclusione errata che l'energia dei livelli perturbati non subisca alcuno spostamento al primo ordine, rimanendo esattamente pari all'energia di partenza $E^{(0)}=1$, qualunque sia il valore dell'intensità di perturbazione $\lambda$. L'interazione, pur essendo presente e lineare, sembrerebbe del tutto trasparente per il sistema.
+
+\subsection{Soluzione Esatta del Sistema Degenere Perturbato}
+Essendo il nostro sistema limitato a sole due dimensioni, possiamo verificarne l'esattezza risolvendolo analiticamente senza ricorrere alla teoria delle perturbazioni.
+L'hamiltoniana totale è:
+\begin{equation}
+H(\lambda) = \begin{pmatrix} 1 & \lambda \ \lambda & 1 \end{pmatrix}
+\end{equation}
+
+Calcoliamo gli autovalori esatti imponendo l'equazione secolare $\det(H - E\mathbb{I}) = 0$:
+\begin{equation}
+\det \begin{pmatrix} 1 - E & \lambda \ \lambda & 1 - E \end{pmatrix} = 0
+\end{equation}
+Sviluppando il determinante:
+\begin{equation}
+(1 - E)^2 - \lambda^2 = 0
+\end{equation}
+\begin{equation}
+E^2 - 2E + 1 - \lambda^2 = 0
+\end{equation}
+
+Questa è un'equazione di secondo grado nella variabile $E$. Risolvendola tramite la formula ridotta, otteniamo le energie esatte in funzione di $\lambda$:
+\begin{equation}
+E_{\pm}(\lambda) = 1 \pm \sqrt{1^2 - (1 - \lambda^2)} = 1 \pm \sqrt{\lambda^2} = 1 \pm \lambda
+\end{equation}
+
+Abbiamo trovato che lo spettro energetico esatto si splitta immediatamente in due livelli separati:
+\begin{itemize}
+\item $E_+ = 1 + \lambda$
+\item $E_- = 1 - \lambda$
+\end{itemize}
+
+L'energia esatta dipendeva \textbf{linearmente} dal parametro $\lambda$. Pertanto, al primo ordine in un ipotetico sviluppo, ci saremmo aspettati di trovare una correzione perturbativa pari proprio a $\pm \lambda$. La teoria perturbativa non adattata ha invece fornito clamorosamente un valore pari a $0$.
+
+\section{Analisi dell'Incoerenza: La Scelta della Base}
+
+Per comprendere la radice del fallimento, calcoliamo gli autostati esatti del sistema perturbato $H(\lambda)$.
+Impostiamo l'equazione per il generico autostato $\binom{a}{b}$ relativo all'autovalore $E_{\pm} = 1 \pm \lambda$:
+\begin{equation}
+\begin{pmatrix} 1 & \lambda \ \lambda & 1 \end{pmatrix} \begin{pmatrix} a \ b \end{pmatrix} = (1 \pm \lambda) \begin{pmatrix} a \ b \end{pmatrix}
+\end{equation}
+
+Ricaviamo il sistema lineare associato:
+\begin{align}
+a + \lambda b &= (1 \pm \lambda) a = a \pm \lambda a \
+\lambda a + b &= (1 \pm \lambda) b = b \pm \lambda b
+\end{align}
+Semplificando la prima equazione (cancellando il termine $a$ ad ambo i membri), otteniamo:
+\begin{equation}
+\lambda b = \pm \lambda a \implies b = \pm a
+\end{equation}
+\textit{(La seconda equazione produce ovviamente il medesimo vincolo, $\lambda a = \pm \lambda b \implies a = \pm b$).}
+
+Applicando la condizione di normalizzazione $\vert{}a\vert{}^2 + \vert{}b\vert{}^2 = 1 \implies 2\vert{}a\vert{}^2 = 1 \implies a = 1/\sqrt{2}$, troviamo i due autostati esatti del problema perturbato:
+\begin{itemize}
+\item Stato associato a $E_+ = 1 + \lambda$: $\quad \vert{}v_+\rangle = \frac{1}{\sqrt{2}} \binom{1}{1}$
+\item Stato associato a $E_- = 1 - \lambda$: $\quad \vert{}v_-\rangle = \frac{1}{\sqrt{2}} \binom{1}{-1}$
+\end{itemize}
+
+Confrontiamo ora questi vettori con gli autostati del sistema di partenza imperturbato (per $\lambda=0$). La base imperturbata che avevamo scelto era la base canonica:
+\begin{itemize}
+\item $\vert{}1^{(0)}\rangle = \binom{1}{0}$
+\item $\vert{}2^{(0)}\rangle = \binom{0}{1}$
+\end{itemize}
+
+\subsection{Il "Salto" Fittizio degli Autostati}
+Analizzando i risultati, emerge una situazione paradossale. Se usiamo la teoria standard, sembra che per $\lambda=0$ gli stati siano $\binom{1}{0}$ e $\binom{0}{1}$. Tuttavia, non appena accendiamo la perturbazione per un valore infinitesimo $\lambda \to 0^+$, la matematica del sistema ci dice che i veri autostati "saltano" bruscamente nelle configurazioni simmetriche e antisimmetriche $\frac{1}{\sqrt{2}}\binom{1}{\pm 1}$.
+Esiste realmente una discontinuità così violenta nella fisica del sistema? \textbf{La risposta è no}. Non c'è alcun salto brusco o comportamento anomalo della natura.
+
+L'apparente discontinuità è esclusivamente un \textbf{artefatto matematico} derivante da una nostra malaugurata scelta iniziale. Il sistema imperturbato era \textbf{degenere}. In un sottospazio degenere, in cui ogni direzione corrisponde allo stesso autovalore ($H_0 = \mathbb{I}$), \textit{qualsiasi} combinazione lineare di vettori indipendenti forma una base altrettanto valida e ortonormale di autostati.
+Noi abbiamo scelto arbitrariamente la base canonica $\{\binom{1}{0}, \binom{0}{1}\}$, ma nulla ci vietava di definire fin dal principio i nostri stati liberi imperturbati come:
+\begin{itemize}
+\item $\vert{}1^{\prime(0)}\rangle = \frac{1}{\sqrt{2}} \binom{1}{1}$
+\item $\vert{}2^{\prime(0)}\rangle = \frac{1}{\sqrt{2}} \binom{1}{-1}$
+\end{itemize}
+Questi due nuovi vettori sono a tutti gli effetti validissimi autostati dell'hamiltoniana degenere di partenza $H_0 = \mathbb{I}$, giacché l'identità applicata a loro restituisce se stessi.
+
+\section{La Simmetria del Sistema e il Ruolo della Perturbazione}
+
+Il fulcro del problema è che la nostra scelta della base imperturbata è totalmente arbitraria, ma \textbf{il sistema fisico no}. Il sistema possiede delle simmetrie intrinseche che "non conoscono" e non si curano della base arbitraria che noi umani tracciamo sulla carta per comodità di calcolo.
+
+Quando si parla di \textit{sistema degenere}, ci si riferisce all'esistenza di una simmetria che rende fisicamente indistinguibili certe configurazioni. (Ad esempio, in un potenziale sferico, tutte le direzioni dello spazio sono equivalenti, determinando la degenerezza sui livelli associati ai momenti angolari magnetici $m$). La degenerezza ci garantisce un'infinita libertà di scelta per la base, perché tutte le basi sono invarianti rispetto all'operatore di simmetria imperturbato.
+
+Quando introduciamo un potenziale perturbativo $H_1$, questo operatore ha una sua forma specifica e una sua \textbf{struttura di simmetria}. Generalmente, questa perturbazione "rompe" la simmetria del sistema originario.
+Il punto fondamentale è che \textbf{l'interazione "sceglie" autonomamente la combinazione lineare di autostati su cui agire}, in base alle proprie regole di simmetria. L'operatore $H_1$ "vede" il sottospazio degenere, ma impone un suo ordine su di esso: alcune specifiche combinazioni lineari degli stati degeneri manterranno l'energia inalterata rispetto al campo (o subiranno uno spostamento definito), mentre altre combinazioni, mal adattate alla geometria della perturbazione, si "rimescoleranno" o risulteranno affette da singolarità algebriche se forzate nelle equazioni.
+
+\subsection{Esempio dell'Effetto Stark}
+Riprendiamo l'esempio dell'Effetto Stark lineare sull'idrogeno.
+Abbiamo i livelli degeneri $2s$ (funzione d'onda sferica, pari) e i vari $2p$ (funzioni d'onda a lobo, dipendenza direzionale). Mettendo il sistema in un campo elettrico costante orientato lungo l'asse $z$, inseriamo una perturbazione $H_1 \propto z$, che è un operatore \textbf{dispari} sotto inversione spaziale.
+
+I nostri stati degeneri di partenza hanno parità definita (S è pari, P è dispari). Tuttavia, se accendiamo l'interazione $H_1$ dispari, essa connetterà direttamente lo stato $S$ e lo stato $P_z$. La perturbazione "deciderà" che i veri nuovi autostati fisici del sistema non sono più gli stati a parità definita $S$ e $P$, ma una \textbf{combinazione lineare ibrida} tra un orbitale $S$ e un orbitale $P$, asimmetrica rispetto all'origine (perché l'elettrone verrà tirato verso un polo dal campo elettrico).
+
+Se noi insistessimo, da studiosi testardi, a voler forzare la teoria perturbativa impiegando la base dei vecchi stati a parità definita $S$ e $P$ (quella che avevamo scelto liberamente prima che il campo fosse acceso), l'interazione produrrebbe proprio quei denominatori nulli tra gli stati degeneri, facendoci incartare in divergenze o falsi zeri (come avvenuto col vettore $\binom{1}{0}$).
+
+Dobbiamo perciò \textbf{abbandonare} la libertà di scelta e assecondare la perturbazione. Dobbiamo individuare e utilizzare, già fin dall'inizio (a ordine zero $\lambda=0$), \textbf{quella specifica combinazione lineare di vettori degeneri che risulta buona sia per l'hamiltoniana $H_0$ sia per l'interazione $H_1$}. Questo equivale matematicamente a diagonalizzare la matrice della perturbazione all'interno del sottospazio degenere.
+
+\section{Applicazione della Teoria Perturbativa: Prima Dimostrazione}
+
+Continuiamo l'analisi del nostro sistema di prova a due livelli, concentrandoci ora sulla formulazione della \textbf{teoria delle perturbazioni nel caso degenere}, sfruttando la base che diagonalizza la perturbazione $H_1$.
+
+Come abbiamo discusso, se operiamo un cambio di base appropriato, la teoria delle perturbazioni al primo ordine per il caso degenere ci fornirà dei risultati. Definiamo gli elementi di matrice di $H_1$ in questa nuova base. L'espressione generale della correzione al primo ordine per un generico autovalore $E_i^{(1)}$ è data da:
+\begin{equation}
+E_i^{(1)} = \langle n^{(0)}, i | H_1 | n^{(0)}, i \rangle
+\end{equation}
+
+Per applicare questo calcolo al nostro specifico sistema bidimensionale degenere, usiamo le due combinazioni simmetriche e antisimmetriche (che abbiamo definito come $\vert{}1^{\prime}\rangle$ e $\vert{}2^{\prime}\rangle$ e che chiameremo "stati diagonalizzanti"):
+\begin{align}
+|1^{\prime}\rangle &= \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \ 1 \end{pmatrix} \
+|2^{\prime}\rangle &= \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \ -1 \end{pmatrix}
+\end{align}
+
+Calcoliamo l'elemento di matrice di $H_1$ relativo al primo stato diagonale $\vert{}1^{\prime}\rangle$, che denoteremo con $(H_1)_{1',1'}$:
+\begin{equation}
+(H_1)_{1',1'} = \langle 1^{\prime} | H_1 | 1^{\prime} \rangle
+\end{equation}
+
+Ricordando che nel nostro modello avevamo definito l'operatore di interazione (privato di $\lambda$) come:
+\begin{equation}
+H_1 = \begin{pmatrix} 0 & 1 \ 1 & 0 \end{pmatrix}
+\end{equation}
+
+Sostituiamo i vettori all'interno dell'elemento di matrice. Il fattore $1/\sqrt{2}$ compare sia nel bra (a sinistra) sia nel ket (a destra), per cui si estrae un coefficiente $(1/\sqrt{2}) \cdot (1/\sqrt{2}) = 1/2$:
+\begin{equation}
+(H_1)_{1',1'} = \frac{1}{2} \begin{pmatrix} 1 & 1 \end{pmatrix} \begin{pmatrix} 0 & 1 \ 1 & 0 \end{pmatrix} \begin{pmatrix} 1 \ 1 \end{pmatrix}
+\end{equation}
+
+Procediamo eseguendo il prodotto matrice-vettore a destra:
+\begin{equation}
+\begin{pmatrix} 0 & 1 \ 1 & 0 \end{pmatrix} \begin{pmatrix} 1 \ 1 \end{pmatrix} = \begin{pmatrix} 0\cdot 1 + 1\cdot 1 \ 1\cdot 1 + 0\cdot 1 \end{pmatrix} = \begin{pmatrix} 1 \ 1 \end{pmatrix}
+\end{equation}
+
+Ora moltiplichiamo scalarmente questo risultato col vettore riga (il bra) a sinistra, senza scordare il prefisso $1/2$:
+\begin{equation}
+(H_1)_{1',1'} = \frac{1}{2} \begin{pmatrix} 1 & 1 \end{pmatrix} \begin{pmatrix} 1 \ 1 \end{pmatrix} = \frac{1}{2} (1 \cdot 1 + 1 \cdot 1) = \frac{1}{2} (2) = 1
+\end{equation}
+
+\subsection{Recupero del Risultato Esatto al Primo Ordine}
+Abbiamo così determinato che la correzione al primo ordine per l'energia di questo stato è pari a $1$. Di conseguenza, reintroducendo il parametro perturbativo $\lambda$, lo spostamento energetico è pari a $\lambda \cdot 1 = \lambda$.
+L'energia totale del livello perturbato si stima come la somma dell'energia imperturbata ($E^{(0)} = 1$) e della correzione al primo ordine:
+\begin{equation}
+E_{1'} \approx 1 + \lambda
+\end{equation}
+
+In maniera perfettamente speculare, chi volesse svolgere il calcolo per lo stato antisimmetrico $\vert{}2^{\prime}\rangle$, troverebbe:
+\begin{equation}
+(H_1)*{2',2'} = \frac{1}{2} \begin{pmatrix} 1 & -1 \end{pmatrix} \begin{pmatrix} 0 & 1 \ 1 & 0 \end{pmatrix} \begin{pmatrix} 1 \ -1 \end{pmatrix} = -1
+\end{equation}
+Reintroducendo $\lambda$, l'energia perturbata dello stato 2' diventa:
+\begin{equation}
+E*{2'} \approx 1 - \lambda
+\end{equation}
+
+Come volevasi dimostrare, questa applicazione della teoria delle perturbazioni (effettuata sulla base "giusta") non solo \textbf{non va in errore}, ma ci \textbf{restituisce esattamente la stessa forma analitica della soluzione esatta} $E_{\pm} = 1 \pm \lambda$ trovata analiticamente nella lezione precedente risolvendo l'equazione secolare del problema totale.
+
+Confrontiamo questo risultato formidabile con quello che avevamo trovato provando testardamente a usare la base standard canonica: su quella base (che non era adattata all'interazione) l'energia sembrava bloccata a $E=1$, insensibile al valore di $\lambda$. La base che diagonalizza $H_1$, invece, ci permette di cogliere l'intero spettro della perturbazione fin dal primo ordine perturbativo.
+
+\section{Le Correzioni allo Stato e la Base Adattata}
+
+Questo cambio di base risolve miracolosamente le criticità matematiche esposte? Cerchiamo di calcolare le correzioni \textbf{dello stato} usando la formula ricavata con il formalismo di proiezione:
+\begin{equation}
+|n^{(1)}\rangle = \sum_{k \neq n} \frac{\langle k^{(0)} | H_1 | n^{(0)} \rangle}{E_n^{(0)} - E_k^{(0)}} |k^{(0)}\rangle
+\end{equation}
+
+Nel nostro sistema degenere a due livelli ($E_1^{(0)} = E_2^{(0)} = 1$), per calcolare lo stato $\vert{}1'^{(1)}\rangle$, l'unica combinazione lecita da inserire per l'indice della sommatoria è per lo stato $\vert{}2'\rangle$ della nostra nuova base:
+\begin{equation}
+|1'^{(1)}\rangle = \frac{\langle 2' | H_1 | 1' \rangle}{E_{1'}^{(0)} - E_{2'}^{(0)}} |2'\rangle
+\end{equation}
+
+Come prima, l'energia imperturbata di partenza era la medesima: $E_{1'}^{(0)} = 1$ ed $E_{2'}^{(0)} = 1$. Quindi, in linea teorica, il denominatore fa di nuovo irrimediabilmente zero.
+\begin{equation}
+\text{Denominatore} = 1 - 1 = 0
+\end{equation}
+
+Sembra che ci troviamo di fronte alla stessa identica "patologia" riscontrata con la base iniziale, un risultato che tenderebbe all'infinito e condurrebbe all'inservibilità della serie.
+
+Tuttavia, c'è un elemento fondamentale da valutare: \textbf{il numeratore}. Dobbiamo calcolare l'elemento di matrice fuori diagonale $\langle 2' \vert{} H_1 \vert{} 1' \rangle$ tra i due stati della base che noi stessi abbiamo costruito in precedenza.
+Come abbiamo definito questa base speciale $\{ \vert{}1'\rangle, \vert{}2'\rangle \}$? Per costruzione, essa è la base che \textbf{diagonalizza} l'operatore $H_1$ nel sottospazio bidimensionale degenere.
+
+Per le proprietà algebriche stesse delle matrici diagonali, in una base diagonalizzante \textbf{tutti gli elementi fuori diagonale dell'operatore si annullano identicamente}. Quindi, a priori e senza alcun bisogno di eseguire i conti esplici (che per completezza, se fatti, riporterebbero zero: $\frac{1}{2} \binom{1}{-1}^T \binom{0}{1 \\ 1}{0} \binom{1}{1} = \frac{1}{2} \binom{1}{-1}^T \binom{1}{1} = \frac{1}{2}(1 - 1) = 0$), sappiamo che:
+\begin{equation}
+\langle 2' | H_1 | 1' \rangle \equiv 0
+\end{equation}
+
+Questa singola equazione svela tutta la potenza del cambio di base: \textbf{la ridiagonalizzazione rimuove chirurgicamente le cause della divergenza a numeratore prima ancora di permettere al denominatore nullo di innescarla.}
+Dal momento che l'elemento di transizione tra i due stati si annulla, il termine corrispondente si disaccoppia e viene eliminato. Di fatto, non sussistendo transizione fra i due livelli degeneri causata da questa specifica interazione (dovuta a leggi di selezione e di simmetria da essa imposte), non avremo bisogno di effettuare divisioni per zero. Le equazioni cessano di divergere.
+
+Concludiamo quindi che con la corretta scelta della "base buona":
+\begin{itemize}
+\item La correzione dello stato perturbato generata da mixing fra i livelli del sottospazio degenere \textbf{è rigorosamente zero}. Gli stati fisici, una volta scelti opportunamente tra l'infinita combinazione di quelli disponibili (nel nostro caso $\frac{1}{\sqrt{2}}\binom{1}{\pm 1}$), non hanno bisogno di subire correzioni di primo ordine per mezzo dei propri compagni degeneri.
+\item Il risultato $0/0$ non è, in questo contesto formale, il limite di una serie asintotica, ma un artificio legato all'erroneo tentativo (da cui dobbiamo astenerci per la regola del disaccoppiamento) di sommare termini "vietati" dalle nuove regole di simmetria imposte dalla perturbazione.
+\end{itemize}
+
+\section{Formalismo Generale della Teoria Degenere}
+
+Astraendo dalla logica empirica appena descritta per il sistema a due livelli, deriviamo formalmente le equazioni della teoria perturbativa generale nel caso degenere, riallacciandoci all'operatore di proiezione sviluppato in precedenza.
+
+Consideriamo un livello imperturbato associato all'energia $E_n^{(0)}$, la cui \textbf{degenerezza formale sia pari a $g_n$}. Indicheremo il sottospazio vettoriale corrispondente con $\mathcal{D}^{(0)}$. Gli stati di base formanti questo sottospazio saranno etichettati dall'indice $i$ (con $i=1, \dots, g_n$) come $\vert{}n^{(0)}, i\rangle$.
+
+Introduciamo la consueta perturbazione parametrica e cerchiamo l'energia e lo stato perturbato della $i$-esima branca spaccata del livello degenere:
+\begin{align}
+E_{n,i} &= E_n^{(0)} + \lambda E_{n,i}^{(1)} + \dots \
+|n, i\rangle &= |n^{(0)}, i\rangle + \lambda |n^{(1)}, i\rangle + \dots
+\end{align}
+\textit{Nota essenziale: stiamo fin dall'inizio facendo l'assunzione di aver \textbf{già individuato} una "buona" base di partenza $\vert{}n^{(0)}, i\rangle$ nello spazio di Hilbert. Più avanti dimostreremo come questo si traduca in un'equazione di autovalori all'interno del sottospazio $\mathcal{D}^{(0)}$.}
+
+Ripartiamo dall'equazione della teoria perturbativa al primo ordine generalizzata per lo stato $i$:
+\begin{equation}
+(E_n^{(0)} - H_0) |n^{(1)}, i\rangle = (H_1 - E_{n,i}^{(1)}) |n^{(0)}, i\rangle
+\end{equation}
+
+Per analizzare il comportamento intra-sottospazio e inter-sottospazio, introduciamo un'estensione dell'operatore di proiezione. Definiamo \textbf{il proiettore dell'intero sottospazio degenere $\mathcal{D}^{(0)}$}, che chiameremo $P$, pari alla somma dei singoli proiettori di base:
+\begin{equation}
+P \equiv \sum_{k=1}^{g_n} |n^{(0)}, k\rangle \langle n^{(0)}, k|
+\end{equation}
+Questo operatore seleziona un vettore qualsiasi e restituisce solo la porzione che "vive" all'interno del sottospazio $\mathcal{D}^{(0)}$.
+Corrispettivamente, come in precedenza, definiamo $Q$ in maniera tale che $P+Q = \mathbb{I}$, e che $PQ = 0$. $Q$ agisce isolando tutte le componenti di un vettore relative a stati con energie diverse (lo spazio inter-sottospazi).
+
+Come fatto nella teoria non degenere, sfruttiamo l'identità fondamentale secondo cui la correzione al primo ordine $\vert{}n^{(1)}, i\rangle$ (per le regole di normalizzazione che assumiamo valide anche in questo limite) è rigorosamente ortogonale a \textbf{tutto} il sottospazio originario imperturbato $\mathcal{D}^{(0)}$.
+Da questo postulato discende che l'azione di $P$ (che "cerca" componenti nel sottospazio originario) applicata sul termine correttivo dia risultato nullo:
+\begin{equation}
+P \left[ (E_n^{(0)} - H_0) |n^{(1)}, i\rangle \right] = 0
+\end{equation}
+
+Se applichiamo questo operatore a destra e a sinistra nell'equazione di base e imponiamo l'ortogonalità a zero del membro di sinistra, ricaviamo:
+\begin{equation}
+P \left( H_1 - E_{n,i}^{(1)} \right) |n^{(0)}, i\rangle = 0
+\end{equation}
+
+Questa è la versione astratta dell'equazione fondamentale del primo ordine per il caso degenere. Il nostro obiettivo è tradurre questa forma operatoriale generica (valida per ogni base teorica ortonormale di $\mathcal{D}^{(0)}$) in un \textbf{problema agli autovalori pratico}.
+
+Per liberarci del proiettore, moltiplichiamo a sinistra l'equazione per il bra di un generico vettore di base ortonormale $\vert{}n^{(0)}, j\rangle$ appartenente allo stesso sottospazio degenere $\mathcal{D}^{(0)}$:
+\begin{equation}
+\langle n^{(0)}, j | P \left( H_1 - E_{n,i}^{(1)} \right) |n^{(0)}, i\rangle = 0
+\end{equation}
+
+Sviluppiamo il prodotto considerando che lo stato appartiene già a $\mathcal{D}^{(0)}$, per cui l'azione di $P$ restituisce semplicemente il medesimo vettore:
+\begin{equation}
+\langle n^{(0)}, j | \left( H_1 - E_{n,i}^{(1)} \right) |n^{(0)}, i\rangle = 0
+\end{equation}
+Sfruttando la linearità, l'equazione assume l'aspetto del calcolo degli elementi di una matrice intra-spaziale, e in virtù del fatto che il termine sull'energia non è altro che uno scalare con una delta di Kronecker sui bra-ket:
+\begin{equation}
+\langle n^{(0)}, j | H_1 |n^{(0)}, i\rangle - E_{n,i}^{(1)} \delta_{j,i} = 0
+\end{equation}
+
+\section{Espansione in Combinazione Lineare}
+
+Ripartiamo dall'equazione della teoria perturbativa generale ricavata alla fine della lezione precedente, applicando il proiettore $P$:
+\begin{equation}
+P (H_1 - E_{n,i}^{(1)}) |n^{(0)}, i\rangle = 0
+\end{equation}
+
+Come abbiamo fatto notare, per giungere a un'equazione utile operativamente, andiamo a proiettare questa equazione su uno stato della base. Abbiamo visto che, proiettando sul medesimo stato $i$ e calcolando:
+\begin{equation}
+\langle n^{(0)}, i | P (H_1 - E_{n,i}^{(1)}) |n^{(0)}, i\rangle = 0
+\end{equation}
+Otteniamo per il livello $i$-esimo:
+\begin{equation}
+E_{n,i}^{(1)} = \langle n^{(0)}, i | H_1 | n^{(0)}, i \rangle
+\end{equation}
+\textit{(Nota: Nella prima parte della trattazione avevamo omesso l'indice $n$ per comodità notazionale del livello generale, usando solo l'indice di degenerazione $i$ o $j$. Riscriviamo quindi con notazione semplificata: $\langle i^{(0)} \vert{} H_1 \vert{} i^{(0)} \rangle$ intendendo gli stati del sottospazio degenere).}
+
+Fin qui, questo è esattamente ciò che abbiamo sempre fatto. Ma interviene ora la considerazione fisica fondamentale che cambia radicalmente il quadro.
+Noi abbiamo scritto e proiettato l'equazione \textit{assumendo di aver già a disposizione la base giusta} $\vert{}n^{(0)}, i\rangle$.
+Tuttavia, nella realtà, noi partiamo da una base iniziale \textbf{arbitraria}, che chiameremo $\vert{}n^{(0)}, j\rangle$ (con $j = 1, \dots, g_n$). Noi \textit{non sappiamo} a priori quale sia la combinazione lineare di questa base arbitraria che genera gli autostati reali della perturbazione (quelli che evitano le singolarità).
+
+Pertanto, l'equazione della teoria perturbativa deve valere in maniera più generale non solo per i singoli vettori della nostra base arbitraria, ma per \textbf{il vero autostato fisico}, che chiameremo $\vert{}\psi\rangle$ e che apparterrà al sottospazio degenere $\mathcal{D}^{(0)}$.
+
+Essendo $\vert{}\psi\rangle$ contenuto interamente nel sottospazio degenere, esso potrà essere espresso come una \textbf{combinazione lineare} dei vettori della nostra base arbitraria $\vert{}n^{(0)}, j\rangle$:
+\begin{equation}
+|\psi\rangle = \sum_{j=1}^{g_n} c_j |n^{(0)}, j\rangle
+\end{equation}
+I coefficienti $c_j$ sono le incognite del nostro problema: rappresentano i "pesi" con cui i vari vettori della base iniziale si mescolano per formare l'autostato reale su cui la perturbazione agirà in modo "pulito".
+
+\section{Costruzione del Sistema Agli Autovalori (Equazione Secolare)}
+
+Inseriamo questa espressione più generale per lo stato nell'equazione base proiettata, avendo cura di proiettare l'intera equazione su un generico vettore della base arbitraria, $\vert{}n^{(0)}, i\rangle$:
+
+\begin{equation}
+\langle n^{(0)}, i | P \left( H_1 - E_{n}^{(1)} \right) |\psi\rangle = 0
+\end{equation}
+\begin{equation}
+\langle n^{(0)}, i | P \left( H_1 - E_{n}^{(1)} \right) \left( \sum_{j=1}^{g_n} c_j |n^{(0)}, j\rangle \right) = 0
+\end{equation}
+
+Per linearità, portiamo fuori la sommatoria e i coefficienti $c_j$. Poiché lo stato $\vert{}n^{(0)}, i\rangle$ appartiene a $\mathcal{D}^{(0)}$, l'azione del proiettore $P$ è identica: $\langle n^{(0)}, i \vert{} P = \langle n^{(0)}, i \vert{}$.
+Otteniamo quindi:
+\begin{equation}
+\sum_{j=1}^{g_n} c_j \langle n^{(0)}, i | \left( H_1 - E_n^{(1)} \right) |n^{(0)}, j\rangle = 0
+\end{equation}
+
+Separiamo ora i due contributi all'interno dell'elemento di matrice.
+\begin{equation}
+\sum_{j=1}^{g_n} c_j \left[ \langle n^{(0)}, i | H_1 | n^{(0)}, j\rangle - E_n^{(1)} \langle n^{(0)}, i | n^{(0)}, j\rangle \right] = 0
+\end{equation}
+
+Analizziamo i termini:
+\begin{enumerate}
+\item Il termine $\langle n^{(0)}, i \vert{} H_1 \vert{} n^{(0)}, j\rangle$ è semplicemente l'elemento di matrice dell'operatore perturbazione calcolato rispetto alla nostra base iniziale arbitraria. Definiamo, per compattezza di scrittura, la matrice quadrata (di dimensione $g_n \times g_n$) della perturbazione:
+\begin{equation}
+V_{ij} \equiv \langle n^{(0)}, i | H_1 | n^{(0)}, j\rangle
+\end{equation}
+\item Il secondo termine contiene il prodotto scalare $\langle n^{(0)}, i \vert{} n^{(0)}, j\rangle$. Poiché stiamo lavorando su una base ortonormale, per le proprietà formali, questo prodotto vale $1$ se $i=j$, e $0$ se $i \neq j$. Esso corrisponde esattamente alla delta di Kronecker, $\delta_{ij}$.
+\end{enumerate}
+
+Sostituendo queste definizioni nell'equazione, arriviamo alla formula:
+\begin{equation}
+\sum_{j=1}^{g_n} \left( V_{ij} - E_n^{(1)} \delta_{ij} \right) c_j = 0
+\end{equation}
+
+\subsection{L'Equazione Secolare e il Suo Significato}
+Questo è un sistema di equazioni lineari omogenee nei coefficienti incogniti $c_j$. Chi ha familiarità con l'algebra lineare riconoscerà immediatamente in questa formula la classica struttura di un \textbf{problema agli autovalori}:
+\begin{equation}
+V \vec{c} = E_n^{(1)} \vec{c}
+\end{equation}
+
+Affinché questo sistema ammetta soluzioni non banali (ovvero, un vettore dei coefficienti non nullo), è necessario che il determinante della matrice dei coefficienti sia esattamente zero. Si ottiene così l'\textbf{equazione secolare}:
+\begin{equation}
+\det \left( V - E_n^{(1)} \mathbb{I} \right) = 0
+\end{equation}
+
+La straordinaria conclusione di questo passaggio algebrico è che:
+\textbf{Il calcolo della teoria delle perturbazioni al primo ordine per un livello degenere si riduce integralmente al problema di diagonalizzare la sottomatrice dell'interazione $V$ (ovvero $H_1$) calcolata all'interno del sottospazio degenere.}
+
+\section{Sintesi del Metodo Operativo}
+
+Riassumiamo il quadro teorico fin qui tracciato per la risoluzione di un sistema degenere perturbato:
+\begin{enumerate}
+\item Si parte dalla base arbitraria scelta per lo stato degenere.
+\item Si calcolano tutti gli elementi di matrice di $H_1$ incrociando \textit{esclusivamente} gli stati tra loro degeneri, per costruire la sottomatrice $V_{ij}$.
+\item Risolvendo l'equazione secolare $\det(V - E_n^{(1)} \mathbb{I}) = 0$, si trovano gli \textbf{autovalori} di $V$. Questi autovalori ($E_{n,i}^{(1)}$) rappresentano direttamente le singole correzioni energetiche al primo ordine per i rami energetici "spaccati" dalla perturbazione.
+\item Calcolando gli \textbf{autovettori} associati (le componenti $c_j$), si determina l'esatta combinazione lineare degli stati base iniziali che costituisce i veri autostati imperturbati adattati al sistema ($\vert{}n^{(0)}, i\rangle_{buona}$). Su questi autostati "buoni", le equazioni perturbative di ordini superiori (il famoso denominatore) smettono di divergere, perché gli elementi di transizione all'interno del sottospazio si annullano, rendendo applicabile la teoria.
+\end{enumerate}
+
+Questo formalismo chiude coerentemente il cerchio su quanto mostrato in via intuitiva nell'esempio a due livelli: la perturbazione introduce le sue asimmetrie ed "elegge" autonomamente, dall'infinito pool dei vettori degeneri, la combinazione che le rende diagonali.
+
+Nelle prossime lezioni applicheremo questo imponente apparato teorico per lo studio dell'Effetto Stark lineare sull'atomo di idrogeno.
