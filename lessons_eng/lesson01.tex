@@ -1,0 +1,391 @@
+\chapter{Lecture 1 - 02/10/2026}
+
+\section{Introduction to Approximation Methods}
+
+Having closed the parenthesis regarding Bell's inequality and the topic of hidden variables, we now introduce the basic concept of approximate solutions.
+
+Up to this moment, we have studied systems for which it is possible to obtain an exact analytical solution, such as:
+\begin{itemize}
+\item The potential \textbf{square well};
+\item The \textbf{harmonic oscillator};
+\item The \textbf{hydrogen atom}.
+\end{itemize}
+
+In reality, however, the vast majority of physical systems do not belong to this category and do not admit exact solutions. It therefore becomes fundamental to develop and master effective \textbf{approximation methods} to derive the solutions of the system.
+
+\section{Analytical Approximations vs. Numerical Resolution}
+
+A natural methodological objection might arise: since approximations are often based on long formula expansions, why not rely directly on the computing power of modern computers, delegating the resolution to a numerical algorithm to obtain the desired solution precisely?
+
+This approach is intrinsically limiting for at least three fundamental reasons:
+
+1. \subsection{Loss of Physical Understanding
+}
+When performing a numerical resolution (inserting the equations of the system into the computer), one undoubtedly obtains a final solution, but one learns nothing about the intimate dynamics of the system. That is, one loses the understanding of how the specific characteristics (for example, the shape of the potential) determine the particular solution or wave function found.
+\begin{itemize}
+\item \textbf{Practical example (Lattice QCD):} In the study of the theory of strong interactions (Quantum Chromodynamics), we operate in a highly non-perturbative regime. To calculate specific quantities, decades of enormous computational efforts were necessary to solve lattice QCD. This approach involves solving integrals with billions of degrees of freedom. If we rely solely on this final numerical result, we preclude ourselves from understanding the underlying physics, because we ignore the functional role of the various physical components of the system. Analytical approximations, on the contrary, explicitly highlight how the physical quantities and potentials shape the final wave function.
+\end{itemize}
+
+\subsection{2. Guide to the Discovery of New Phenomena}
+Approximation methods are an indispensable guide to tackle and discover unexplored physical regimes, often proving to be the fundamental tool for discovery.
+\begin{itemize}
+\item \textbf{Practical example (Tunnel Effect):} In classical physics, in the presence of a potential barrier, a particle with energy lower than the height of the barrier cannot cross it. If one relied solely on numerical simulation without knowing approximation methods, one might come across minimal crossing probabilities (on the order of $10^{-\text{something}}$) that would easily be mistaken for simple \textbf{numerical noise} or machine error of the computer. Having studied analytical approximations, instead, one understands that that small value is not an error, but the physical imprint of a real quantum phenomenon (the Tunnel Effect). Without a theoretical and approximate reference model, the computer alone will never suggest the existence of a new phenomenon.
+\end{itemize}
+
+\subsection{3. Prevention of Systematic and Gross Errors}
+Approximation methods help the physicist interpret computer data and avoid glaring errors.
+\begin{itemize}
+\item \textbf{Practical example (Selection rules and Parity):} Let us consider the calculation of a transition amplitude (or the variation of an energy level to the first order) between two unperturbed states, for example a level $n$ and a level $m$. If we apply perturbation theory, we know that rigorous \textbf{selection rules} apply. If the initial state and the final one possess the same \textbf{parity} and the operator that induces the transition has a defined parity (such that the integral turns out to be odd), the transition amplitude must be exactly equal to \textbf{zero} for reasons of pure symmetry. Whoever performs the calculation purely numerically might obtain a very small but non-zero value, and be misled. Analytical theory instead guarantees us a priori that the transition is physically forbidden.
+\end{itemize}
+In summary, approximation methods maintain a vital importance today, not only for their historical value, but because they constitute the true \textit{guide} to physical interpretation: without them we risk not noticing the existence of real phenomena or, conversely, interpreting trivial numerical errors as real.
+
+\section{Foundations of Perturbation Theory}
+
+The perturbative approach is based on a fundamental idea. The starting point is a system described by an unperturbed Hamiltonian, which we indicate with $H_0$. This system is by definition exactly solvable; this means that we perfectly know the associated eigenvalue problem:
+\begin{equation}
+H_0 |n^{(0)}\rangle = E_n^{(0)} |n^{(0)}\rangle
+\end{equation}
+where $E_n^{(0)}$ are the eigenvalues (the zero-order energies) and $\vert{}n^{(0)}\rangle$ the exact eigenstates of the free (or unperturbed) system.
+
+The problem arises when we have to analyze a system described by a more general and complex Hamiltonian $H$, which can be written as the sum of the free part and an additional term:
+\begin{equation}
+H = H_0 + \lambda H_1
+\end{equation}
+The term $\lambda H_1$ represents our \textbf{perturbation}, a contribution that we do not know how to solve exactly. The key idea is to hypothesize that the parameter $\lambda$ is a \textbf{small} number, such as to allow us to find an approximate solution starting from the known system.
+
+We therefore seek the exact eigenvalue $E_n$ and the exact eigenstate $\vert{}n\rangle$ associated with the new Hamiltonian $H$:
+\begin{equation}
+H |n\rangle = E_n |n\rangle
+\end{equation}
+Substituting the expression for $H$, the Schrödinger equation becomes:
+\begin{equation}
+(H_0 + \lambda H_1) |n\rangle = E_n |n\rangle \quad \implies \quad (H_0 + \lambda H_1 - E_n) |n\rangle = 0
+\end{equation}
+
+\subsection{The Concept of "Small Perturbation"}
+When we state that the perturbation must be proportional to a "small $\lambda$" (parametrically we mean $\lambda \ll 1$), we mean from a strictly physical point of view that \textbf{the overall effect of the perturbation must be negligible compared to the effect of the term $H\_0$}. In more rigorous mathematical terms, the matrix elements of the perturbative term (which we will calculate during the course of the theory) must be in absolute value much smaller than the spacing of the unperturbed energy levels provided by $H_0$.
+
+For the perturbative approach to make sense, we therefore expect the final eigenvalue $E_n$ and the eigenstate $\vert{}n\rangle$ to be expressible as a certain expandable function of the parameter $\lambda$.
+
+\section{Completeness of the Basis and Limits of Validity}
+
+At the basis of the perturbative resolution there is an important initial assumption: the Hilbert space of the perturbed system coincides with that of the unperturbed system. Since the starting eigenstates $\{\vert{}n^{(0)}\rangle\}$ form a \textbf{complete basis} for the system $H_0$, we continue to assume that they constitute a valid complete basis also for the problem with the perturbation $\lambda H_1$.
+
+Consequently, we expect that the new eigenstate $\vert{}n\rangle$ can be described as a \textbf{linear combination} of the starting basis. Specifically, it will be composed of the starting state $\vert{}n^{(0)}\rangle$ added to a linear combination of all the other states $k \neq n$ perturbed by the interaction.
+
+\subsection{When the Theory Fails: Strong Interactions}
+It is fundamental to specify that this assumption (unchanged basis between free and perturbed system) \textbf{is not valid in general}.
+
+Let us consider the following example: we have a hydrogen atom and we perturb it weakly with an electromagnetic wave. In this regime (classical atomic transitions), the new states are still excellent linear combinations of the bound states of the hydrogen atom.
+But what happens if the system is struck by a very high-energy wave, such as to split the hydrogen atom and tear the electrons away from the nucleus?
+\begin{itemize}
+\item The electrons become free particles.
+\item Their final state will no longer be sensibly describable using the eigenfunctions (bound states) of the hydrogen atom.
+\item From a mathematical point of view, we are moving into a completely different Hilbert space (from the discrete spectrum we pass to the continuous spectrum).
+\end{itemize}
+In this specific case, the energy involved breaks the hierarchy of the system: the term $\lambda H_1$ is \textbf{no} longer small, the perturbation destroys the initial setup and, consequently, the perturbative approach based on the completeness of the old unperturbed states stops working entirely.
+
+\section{The Rayleigh-Schrödinger Method}
+
+\subsection{Expansion of Eigenstates}
+In the presence of a perturbation, one expects that the new perturbed eigenstate will form starting from the initial unperturbed state to which is added a linear combination (weighted by appropriate coefficients $c_k$) constructed on the basis of the starting eigenstates.
+
+The key idea of perturbation theory lies precisely in this: being able to express and "disentangle" the nature of the final perturbed state always starting from the unperturbed states. As we discussed previously (in the example of the very high-energy wave incident on an atom), we know that there are exceptions where the perturbation is such as to change the Hilbert space and invalidate this assumption; excluding these limit cases, however, we consider the expression in terms of the original basis to be valid.
+
+The rigorous formalism that materializes this idea and allows us to set up the theory takes the name of the \textbf{Rayleigh-Schrödinger method}.
+
+\subsection{Assumption of Analyticity and Series Expansions}
+Based on this principle, the exact eigenvalue of the perturbed system (the energy $E_n$) becomes a function dependent on the coupling parameter of the perturbation, $\lambda$. The new energy value will be equal to the starting unperturbed value to which the effects induced by the perturbation are added.
+
+The fundamental assumption of the method — which proves valid in the vast majority of physical cases treated — is that the dependence of the quantity on the parameter $\lambda$ is of an \textbf{analytical} nature. Analyticity implies that the function can be entirely expressed through a Taylor (or Maclaurin) series expansion in powers of the parameter $\lambda$.
+
+We can therefore write the perturbed energy as:
+\begin{equation}
+E_n = E_n^{(0)} + \lambda E_n^{(1)} + \lambda^2 E_n^{(2)} + \dots
+\end{equation}
+where:
+\begin{itemize}
+\item $E_n^{(0)}$ is the energy of the unperturbed system (zero order);
+\item $E_n^{(1)}$ represents the \textbf{first-order} correction;
+\item $E_n^{(2)}$ represents the \textbf{second-order} correction, and so on.
+\end{itemize}
+
+Exactly in the same way, we can expand the exact perturbed eigenstate $\vert{}n\rangle$. It too will present an unperturbed zero-order term to which the corrections at the various orders in powers of $\lambda$ will progressively be added:
+\begin{equation}
+|n\rangle = |n^{(0)}\rangle + \lambda |n^{(1)}\rangle + \lambda^2 |n^{(2)}\rangle + \dots
+\end{equation}
+
+\subsection{Setting Up the Problem Order by Order}
+
+\textit{(Note: To those who have already tackled the study of perturbation theory in previous courses, the exposition of these steps might seem a somewhat boring repetition. However, it is indispensable to formally review this theoretical basis since it will constitute the starting point from which we will move to tackle much more complex scenarios.)}
+
+The first operational step of the Rayleigh-Schrödinger theory consists in taking back the complete eigenvalue equation for the perturbed system:
+\begin{equation}
+(H_0 + \lambda H_1) |n\rangle = E_n |n\rangle
+\end{equation}
+Having postulated the validity of the series expansions for both the energies and the eigenstates, the method prescribes to \textbf{substitute} the expression of $E_n$ and of $\vert{}n\rangle$ directly into the Schrödinger equation just cited.
+
+Proceeding in this way we will be able to derive the unknowns by equating the terms of the equation that possess the same degree (the same power of the parameter $\lambda$), thus solving the problem in a recursive and iterative manner order by order.
+
+\section{First-Order Correction of Eigenstates}
+
+\subsection{Determination of the coefficients}
+Let us start from the expression in which the sum over the coefficients appears (generally represented by a summation over $k$). To extract a specific coefficient $c_m^{(1)}$, we must project the equation onto the associated unperturbed state. When we perform this operation, thanks to the orthonormality of the states, out of the entire summation only the term for which the index $k$ is equal to $m$ will survive.
+
+Making the equation of the first-order perturbation theory explicit and projecting, we obtain:
+\begin{equation}
+c_m^{(1)} (E_n^{(0)} - E_m^{(0)}) = \langle m^{(0)} | H_1 | n^{(0)} \rangle
+\end{equation}
+Isolating the coefficient $c_m^{(1)}$, we find:
+\begin{equation}
+c_m^{(1)} = \frac{\langle m^{(0)} | H_1 | n^{(0)} \rangle}{E_n^{(0)} - E_m^{(0)}}
+\end{equation}
+
+Knowing all these coefficients for every $k \neq n$, we know the entire linear combination that defines the state.
+In other words, we have found that the state $\vert{}n\rangle$ after the perturbation (to the first order) is equal to the unperturbed state $\vert{}n^{(0)}\rangle$ plus the correction. Considering the formal perturbation $\lambda$, the state is written:
+\begin{equation}
+|n\rangle = |n^{(0)}\rangle + \lambda \sum_{k \neq n} c_k^{(1)} |k^{(0)}\rangle
+\end{equation}
+Substituting the newly found expression for the coefficients $c_k^{(1)}$ (and incorporating $\lambda H_1$ into $H_1$, or keeping $\lambda$ highlighted, depending on the convention) we obtain the final formula for the first-order state:
+\begin{equation}
+|n^{(1)}\rangle = \sum_{k \neq n} \frac{\langle k^{(0)} | H_1 | n^{(0)} \rangle}{E_n^{(0)} - E_k^{(0)}} |k^{(0)}\rangle
+\end{equation}
+
+Thus the basic correction is obtained. We immediately observe a fundamental thing: if the matrix element $\langle k^{(0)} \vert{} H_1 \vert{} n^{(0)} \rangle$ were zero, the term would not contribute to the summation. If all these elements were zero, there would be no correction.
+
+\subsection{Physical Interpretation: The Deformation of the State}
+What is happening physically?
+In the absence of a perturbation, the starting state $\vert{}n^{(0)}\rangle$ and the generic state $\vert{}k^{(0)}\rangle$ are orthogonal to each other. When the perturbation (the operator $H_1$) acts, it deforms the original state beginning to create an "overlap" with the other states of the unperturbed system.
+
+Let's see a \textbf{practical example} with the one-dimensional harmonic oscillator.
+Let us suppose we have a potential, such as a uniform electric field, that introduces a perturbation proportional to $x$ (hence $H_1 \propto x$).
+Let us take as the initial state the ground state, which we will indicate with $\vert{}0^{(0)}\rangle$. We want to calculate the overlap coefficient with the excited state $\vert{}1^{(0)}\rangle$.
+
+The matrix element to evaluate is:
+\begin{equation}
+\langle 1^{(0)} | x | 0^{(0)} \rangle
+\end{equation}
+Recalling that the position operator $x$ can be expressed in terms of the creation ($a^\dagger$) and annihilation ($a$) operators, we know that $x \propto (a + a^\dagger)$. When we apply $a^\dagger$ to the state $\vert{}0^{(0)}\rangle$, we obtain a state proportional to $\vert{}1^{(0)}\rangle$. Since the scalar product $\langle 1^{(0)} \vert{} 1^{(0)} \rangle = 1$, we will have a non-zero overlap. Therefore, the linear perturbation deforms the ground state "mixing" it exclusively with the first excited level.
+
+If instead we asked ourselves what the overlap coefficient with the state $\vert{}2^{(0)}\rangle$ is:
+\begin{equation}
+\langle 2^{(0)} | x | 0^{(0)} \rangle
+\end{equation}
+This matrix element yields zero, since the linear operator (power 1) can make it "jump" only by one level (selection rule of the harmonic oscillator $\Delta n = \pm 1$). The perturbation $x$ is too "weak" to create overlap with more distant levels.
+
+What would happen with a \textbf{stronger interaction}, for example proportional to $x^2$?
+If I apply $x^2 \propto (a + a^\dagger)^2$ to the state $\vert{}0^{(0)}\rangle$, inside the square I will find a term $(a^\dagger)^2$. Applying the creation operator twice starting from $\vert{}0^{(0)}\rangle$, I arrive at the state $\vert{}2^{(0)}\rangle$. Thus, in this case:
+\begin{equation}
+\langle 2^{(0)} | x^2 | 0^{(0)} \rangle \neq 0
+\end{equation}
+I would therefore have a direct overlap with the state $\vert{}2^{(0)}\rangle$.
+
+Although the harmonic oscillator is a special case due to its rigid selection rules, the general physical concept remains valid for any system: \textbf{the perturbation deforms the state, creating overlaps (mixing) with other unperturbed states}, depending on the functional form of the perturbation itself. (These calculations will be resumed during the written exercises, which usually turn out to be very easy on this topic).
+
+```latex
+\section{The Normalization Convention in Perturbation Theory}
+
+Let us now dwell on a technical detail regarding the \textbf{normalization} of perturbed states.
+Some textbooks make a specific choice regarding the terms of the summation. We wrote that the first-order correction $\vert{}n^{(1)}\rangle$ is a sum over the various $\vert{}k^{(0)}\rangle$ \textit{with $k \neq n$}. In other words, we excluded state $n$ from the summation.
+
+In mathematical terms, we are imposing that the expansion does not contain contributions proportional to the starting state, which is equivalent to stating that:
+\begin{equation}
+\langle n^{(0)} | n^{(1)} \rangle = 0
+\end{equation}
+
+Let's see the implications. Let's expand the scalar product between the unperturbed state and the total perturbed state:
+\begin{equation}
+\langle n^{(0)} | n \rangle = \langle n^{(0)} | \left( |n^{(0)}\rangle + \lambda |n^{(1)}\rangle + \lambda^2 |n^{(2)}\rangle + \dots \right)
+\end{equation}
+Imposing that the overall result must be exactly $1$, we obtain:
+\begin{equation}
+1 = \langle n^{(0)} | n^{(0)} \rangle + \lambda \langle n^{(0)} | n^{(1)} \rangle + \lambda^2 \langle n^{(0)} | n^{(2)}\rangle + \dots
+\end{equation}
+We already know that $\langle n^{(0)} \vert{} n^{(0)} \rangle = 1$. The equation therefore becomes:
+\begin{equation}
+1 = 1 + \lambda \langle n^{(0)} | n^{(1)} \rangle + \lambda^2 \langle n^{(0)} | n^{(2)}\rangle + \dots
+\end{equation}
+Bringing the 1 to the other side of the equation:
+\begin{equation}
+0 = \lambda \langle n^{(0)} | n^{(1)} \rangle + \lambda^2 \langle n^{(0)} | n^{(2)}\rangle + \dots
+\end{equation}
+Since this must be true for a generic parameter $\lambda$ (where $\lambda$ can typically vary from $0$ to $1$), the only possible solution to make the equation independent of $\lambda$ is that every single coefficient of the power series is strictly zero:
+\begin{equation}
+\langle n^{(0)} | n^{(1)} \rangle = 0, \quad \langle n^{(0)} | n^{(2)} \rangle = 0, \quad \dots \quad \langle n^{(0)} | n^{(r)} \rangle = 0
+\end{equation}
+
+This is the intermediate normalization condition: all corrections at all orders must always be \textbf{orthogonal} to the unperturbed starting state.
+
+As we have seen, by imposing that the summation over $k$ in the calculation of $\vert{}n^{(1)}\rangle$ excludes the term $k=n$, we have \textit{already} explicitly applied this choice: all corrections live in the vector space orthogonal to the starting state $n$.
+
+\subsection{Expansion of the Norm at Various Orders}
+What happens when we go to calculate the exact norm of the perturbed state? The student might ask: "Is my new perturbed state, stopping at the first order, still normalized to one?"
+
+Let's calculate the scalar product of the total state with itself (using the expansion up to the first order of $\lambda$):
+\begin{equation}
+\langle n | n \rangle = \left( \langle n^{(0)}| + \lambda \langle n^{(1)}| \right) \left( |n^{(0)}\rangle + \lambda |n^{(1)}\rangle \right)
+\end{equation}
+Expanding the product term by term, we find four contributions:
+\begin{equation}
+\langle n | n \rangle = \langle n^{(0)} | n^{(0)} \rangle + \lambda \langle n^{(1)} | n^{(0)} \rangle + \lambda \langle n^{(0)} | n^{(1)} \rangle + \lambda^2 \langle n^{(1)} | n^{(1)} \rangle
+\end{equation}
+
+Let's analyze the terms:
+\begin{enumerate}
+\item The first term, $\langle n^{(0)} \vert{} n^{(0)} \rangle$, is exactly $1$.
+\item The term $\lambda \langle n^{(1)} \vert{} n^{(0)} \rangle$ is zero, thanks to the orthogonality condition established previously.
+\item The term $\lambda \langle n^{(0)} \vert{} n^{(1)} \rangle$ is also zero.
+\item The term $\lambda^2 \langle n^{(1)} \vert{} n^{(1)} \rangle$ is not zero, but it is a \textbf{second-order} contribution ($\lambda^2$). If we included higher-order corrections ($r>1$), we would obtain other high-degree terms.
+\end{enumerate}
+
+Since at this moment we are developing the theory limiting ourselves exclusively \textbf{to the first order} in the Taylor expansion, and since at this degree of precision the order $\lambda^2$ term must be consistently neglected, we can conclude that the norm of the state, truncated to the first order in $\lambda$, is equal to $1 + 0 = 1$. The state is therefore correctly normalized, provided the discussed orthogonality conditions are respected.
+    
+
+\section{Normalization of the State at Higher Orders}
+
+Resuming the discussion on normalization, we saw previously that, evaluating the norm of the perturbed state $\langle n \vert{} n \rangle$, we obtain an expression of the type $1 + 0 + \mathcal{O}(\lambda^2)$.
+The additional terms that appear, thanks to the orthogonality choice we imposed ($\langle n^{(0)} \vert{} n^{(1)} \rangle = 0$), are all proportional to higher orders of the perturbative parameter $\lambda$.
+
+Consequently, if we truncate the expansion to the \textbf{first order}, the perturbed state is already correctly normalized to $1$. There is no need to introduce further normalization constants.
+If we had not imposed from the beginning the orthogonality between the unperturbed state and its corrections, we would have been forced to insert complex normalization factors already at the first order. With our convention, instead, the state remains normalized to the order we are considering.
+
+\subsection{Complications at subsequent orders}
+However, if we decided to go to the \textbf{second order}, the term proportional to $\langle n^{(1)} \vert{} n^{(1)} \rangle$ would emerge, which would make the norm different from $1$. To restore exact normalization, we would have to add further constants.
+
+This is a known technical problem, treated in the most specialized quantum mechanics texts. Working at increasingly higher perturbative orders, mathematical complications arise: in general, it becomes even difficult (if not impossible) to strictly confine all the corrections of the state into a subspace always orthogonal to the starting state. These are formal subtleties of the mathematical structure of the theory, which we mention for completeness in the framework of theoretical physics, but which will not prevent us from deriving the main physical results.
+
+\section{Calculation of the Energy at Generic Order $r$}
+
+Exploiting the orthogonality property just discussed, let us now derive a general formula for the energy correction at an arbitrary order $r$.
+Let's start from the expanded perturbative Schrödinger equation and isolate the terms of order $r$. We project the entire equation by multiplying on the left by the bra of the unperturbed state, $\langle n^{(0)} \vert{}$.
+
+The equation, structured by collecting the terms, presents itself in the form:
+\begin{equation}
+\langle n^{(0)} | \left( H_0 - E_n^{(0)} \right) | n^{(r)} \rangle = \dots
+\end{equation}
+The left member vanishes identically. Indeed, by letting $H_0$ act on the left on the bra $\langle n^{(0)} \vert{}$, it returns its own eigenvalue $E_n^{(0)}$, so the parenthesis becomes $(E_n^{(0)} - E_n^{(0)}) = 0$. Consequently, the entire left member goes to zero.
+
+Let us now evaluate the right member. It contains both the terms deriving from the energy expansion and the term deriving from the action of the perturbative potential $H_1$.
+Specifically, we will find a sum of terms in which the energies at the various orders $k$ appear multiplied by the projections of the states:
+\begin{equation}
+\sum_{k} E_n^{(k)} \langle n^{(0)} | n^{(r-k)} \rangle
+\end{equation}
+Recalling our normalization convention, we know that $\langle n^{(0)} \vert{} n^{(m)} \rangle = 0$ for any order $m > 0$. Therefore, \textbf{all the terms of this summation vanish}, with the exception of a single term: the one for which the state in the ket is of zero order ($r-k = 0 \implies k=r$).
+This single surviving term is proportional to $\langle n^{(0)} \vert{} n^{(0)} \rangle = 1$, and yields exactly the desired energy correction: $E_n^{(r)}$.
+
+In addition to the energy terms, on the right appears the contribution of the perturbative potential $H_1$ acting on the state at the previous order:
+\begin{equation}
+- \langle n^{(0)} | H_1 | n^{(r-1)} \rangle
+\end{equation}
+
+Equating the sum of the surviving terms on the right to zero, we obtain the final equation:
+\begin{equation}
+E_n^{(r)} - \langle n^{(0)} | H_1 | n^{(r-1)} \rangle = 0
+\end{equation}
+Bringing the matrix term to the other side of the equal sign (changing sign from minus to plus), we arrive at a \textbf{fundamental general property} of perturbation theory:
+\begin{equation}
+E_n^{(r)} = \langle n^{(0)} | H_1 | n^{(r-1)} \rangle
+\end{equation}
+This relation tells us that, in order to calculate the energy correction at order $r$, it is sufficient to know the state correction stopping at the previous order, $r-1$.
+
+\section{Second-Order Energy Correction}
+
+Let's immediately apply the general principle just demonstrated to take the last step: the calculation of the \textbf{second-order energy correction} ($E_n^{(2)}$).
+
+Substituting $r=2$ into the general formula, we obtain:
+\begin{equation}
+E_n^{(2)} = \langle n^{(0)} | H_1 | n^{(1)} \rangle
+\end{equation}
+We already know the analytical expression of the state corrected to the first order $\vert{}n^{(1)}\rangle$, having derived it previously. It is given by the summation over the coefficients $c_k^{(1)}$:
+\begin{equation}
+|n^{(1)}\rangle = \sum_{k \neq n} c_k^{(1)} |k^{(0)}\rangle = \sum_{k \neq n} \frac{\langle k^{(0)} | H_1 | n^{(0)} \rangle}{E_n^{(0)} - E_k^{(0)}} |k^{(0)}\rangle
+\end{equation}
+
+Let's substitute this expression into the matrix element for the second-order energy:
+\begin{equation}
+E_n^{(2)} = \langle n^{(0)} | H_1 \left( \sum_{k \neq n} \frac{\langle k^{(0)} | H_1 | n^{(0)} \rangle}{E_n^{(0)} - E_k^{(0)}} |k^{(0)}\rangle \right)
+\end{equation}
+
+The operator $H_1$ being linear, we can extract the summation and the scalar numerical terms outside the inner product. The operator $H_1$ will then act between the bra $\langle n^{(0)} \vert{}$ and the ket $\vert{}k^{(0)}\rangle$:
+\begin{equation}
+E_n^{(2)} = \sum_{k \neq n} \langle n^{(0)} | H_1 | k^{(0)} \rangle \frac{\langle k^{(0)} | H_1 | n^{(0)} \rangle}{E_n^{(0)} - E_k^{(0)}}
+\end{equation}
+
+We can compact this expression exploiting the properties of Hermitian operators. We know that the perturbation operator $H_1$ is Hermitian (being a physical observable), therefore the relation holds:
+\begin{equation}
+\langle n^{(0)} | H_1 | k^{(0)} \rangle = \left( \langle k^{(0)} | H_1 | n^{(0)} \rangle \right)^*
+\end{equation}
+That is, the matrix element $\langle n^{(0)} \vert{} H_1 \vert{} k^{(0)} \rangle$ is the \textbf{complex conjugate} of the element $\langle k^{(0)} \vert{} H_1 \vert{} n^{(0)} \rangle$.
+
+Multiplying a complex number by its conjugate yields the squared modulus. The final formula for the second-order energy correction therefore assumes the compact and elegant form:
+\begin{equation}
+E_n^{(2)} = \sum_{k \neq n} \frac{\big| \langle k^{(0)} | H_1 | n^{(0)} \rangle \big|^2}{E_n^{(0)} - E_k^{(0)}}
+\end{equation}
+
+\section{Analysis of the Second-Order Correction}
+
+\subsection{Compact Formulation}
+As mentioned at the end of the previous derivation, we can write the second-order energy correction in a more compact form by exploiting the hermiticity properties of the perturbation operator. Knowing that the matrix element $\langle n^{(0)} \vert{} H_1 \vert{} k^{(0)} \rangle$ is exactly the complex conjugate of the symmetric element $\langle k^{(0)} \vert{} H_1 \vert{} n^{(0)} \rangle$, their product yields the squared modulus.
+
+The formula for the second-order energy correction, $E_n^{(2)}$, therefore assumes the formal expression:
+\begin{equation}
+E_n^{(2)} = \sum_{k \neq n} \frac{\big| \langle k^{(0)} | H_1 | n^{(0)} \rangle \big|^2}{E_n^{(0)} - E_k^{(0)}}
+\end{equation}
+
+\subsection{The Importance of the Second Order and Parity}
+A question might naturally arise: why in Quantum Mechanics, in the study of perturbations, is it common practice to calculate not only the first, but also the second order? Is it just a desire to be computationally "more precise"? In reality, the physical motivation is much deeper: \textbf{in very many physical cases of interest, the first-order correction vanishes identically}.
+
+Let us consider the first-order expression for energy:
+\begin{equation}
+E_n^{(1)} = \langle n^{(0)} | H_1 | n^{(0)} \rangle = \int_{-\infty}^{+\infty} \psi_n^*(x) , H_1 , \psi_n(x) , dx
+\end{equation}
+There are numerous situations in which the unperturbed state $\vert{}n^{(0)}\rangle$ possesses a \textbf{definite parity} (its spatial wave function $\psi_n(x)$ is purely even or purely odd). The product $\psi_n^*(x) \psi_n(x) = \vert{}\psi_n(x)\vert{}^2$ yields in any case an \textbf{even} function.
+
+Let us now suppose that the interaction operator $H_1$ also has a definite parity and that it is \textbf{odd} (such as, for example, a linear perturbation proportional to $x$). The overall integral becomes the product of an even function (the squared modulus of the wave function) and an odd function (the operator $H_1$). The result is an odd integrand over a symmetric integration domain, which implies for reasons of parity that the integral is exactly zero:
+\begin{equation}
+E_n^{(1)} = 0
+\end{equation}
+In these situations, there being no first-order correction, the second-order term becomes the main correction (the *leading term*) and assumes fundamental importance to describe the physics of the perturbed system.
+
+\section{Second-Order Correction for the Ground State}
+
+One of the most elegant and immediate physical deductions is obtained by applying the second-order formula to the \textbf{ground state} of the system, which we will indicate with the index $n=0$. Substituting this index into the formula, we have:
+\begin{equation}
+E_0^{(2)} = \sum_{k \neq 0} \frac{\big| \langle k^{(0)} | H_1 | 0^{(0)} \rangle \big|^2}{E_0^{(0)} - E_k^{(0)}}
+\end{equation}
+
+Let us analyze the sign of the terms present in the summation:
+\begin{itemize}
+\item The \textbf{numerator} is a squared modulus, so it represents a strictly positive quantity (or at the limit zero).
+\item The \textbf{denominator} is the difference between the energy of the ground state $E_0^{(0)}$ and the energy of a generic excited state $E_k^{(0)}$. Since the ground state is the one with minimum energy, by definition $E_0^{(0)} < E_k^{(0)}$ for any $k \neq 0$. Therefore, \textbf{the denominator is always negative}.
+\end{itemize}
+
+This leads us to a universal conclusion: \textbf{the second-order correction to the energy of the ground state is always a negative quantity}, completely independently of the sign or specific shape of the interaction $H_1$. That is, the perturbation always tends to further lower the minimum energy level of the system.
+
+\subsection{Level Repulsion and State Deformation}
+This result is an expression of a broader principle known as energy \textbf{level repulsion}. In the presence of a perturbation, interacting levels tend to repel each other. The ground state, being at the bottom of the discrete spectrum and having all other states solely above it, exclusively undergoes a "push" downwards.
+
+If we analyzed the effect of the perturbation (for example a potential proportional to powers of $x$, like $x^3$) on the wave function, we would observe a deformation. The interaction "mixes" the ground state with specific excited states allowed by the selection rules, altering the spatial profile of the wave function so that it acquires characteristics and parity partially borrowed from the upper energy levels with which it overlaps.
+
+\section{Importance of Physical Sense and Methodological Advice}
+
+\subsection{Theoretical Control over Numerical Calculations (Sanity Checks)}
+Having analytically derived properties like the sign of the ground state correction constitutes a vital investigation tool.
+Let us imagine that, in a future research context, you have to write a program to numerically calculate the energy spectrum of a complex perturbed system. It is normal that the first versions of a code present bugs. If your algorithm were to produce a second-order correction for the ground state with a positive sign, you will have an immediate alarm bell: you will understand at a glance that there is a conceptual or implementation error (a violation of the variational principles of the theory), precisely because you know the analytical structure of the underlying approximation.
+
+\subsection{Advice for Written Exams: Units of Measurement and Orders of Magnitude}
+To conclude, I provide you with some essential recommendations ahead of the final written exams of the course (valid for any Physics exam):
+
+\begin{enumerate}
+\item \textbf{Units of measurement:} Always check the dimensional analysis of your results. If the calculation requires an amplitude or a transition probability, the final result must mandatorily be a dimensionless number between $0$ and $1$. If you calculate an energy correction, this must have the correct units of measurement for an energy.
+
+
+```
+
+\item \textbf{Orders of magnitude:} You must always know how to critically judge the number you return at the end of the exercise. For example, if you are studying the perturbation on an atomic system and you obtain as an energy result a value on the order of $1000 \text{ TeV}$, you must realize that it is a physically nonsensical result. It is a logical error equal to that of a medical exam that recorded a blood pressure of $100,000 \text{ atmospheres}$ for a patient (a condition that would obviously make the blood vessels explode!).
+
+
+\end{enumerate}
+
+A careless error during the algebra of a long exercise is tolerable and human. However, if you obtain a blatantly absurd number, a comment is required. Writing at the bottom of the exercise: \textit{"I obtain this numerical result, but I am aware that it is wrong because it violates such physical limit or expected order of magnitude for this system"} is evaluated extremely positively, because it demonstrates a real mastery of the subject and critical sense compared to someone who blindly applies formulas.
+
